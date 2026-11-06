@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Medio dron · Hover</title>
+<style>
+  :root{
+    --bg:#0f1216; --panel:#171b21; --line:#262c35; --txt:#e6e9ee; --mut:#8a93a1;
+    --acc:#4fa3ff; --ok:#3ecf8e; --warn:#ffb020; --bad:#ff4d4f; --m1:#4fa3ff; --m2:#c084fc;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.45 system-ui,Segoe UI,Roboto,sans-serif}
+  header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--panel);position:sticky;top:0;z-index:5}
+  h1{font-size:16px;margin:0 8px 0 0;font-weight:650}
+  .pill{padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:#222831;color:var(--mut)}
+  .pill.on{background:#123524;color:var(--ok)} .pill.arm{background:#3a1416;color:var(--bad)}
+  button{font:inherit;border:1px solid var(--line);background:#20262e;color:var(--txt);padding:7px 12px;border-radius:8px;cursor:pointer}
+  button:hover{border-color:#3a4350} button:disabled{opacity:.4;cursor:not-allowed}
+  button.pri{background:var(--acc);border-color:var(--acc);color:#04121f;font-weight:650}
+  button.warn{background:#3a2a0b;border-color:#6b4b10;color:var(--warn)}
+  #paro{margin-left:auto;background:var(--bad);border-color:var(--bad);color:#fff;font-weight:800;padding:10px 22px;font-size:15px;letter-spacing:.5px}
+  main{display:grid;grid-template-columns:1.25fr 1fr;gap:14px;padding:14px 16px;max-width:1300px;margin:0 auto}
+  @media (max-width:900px){main{grid-template-columns:1fr}}
+  section{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
+  h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);margin:0 0 10px;font-weight:650}
+  .row{display:flex;align-items:center;gap:10px;margin:8px 0}
+  .row label{min-width:150px;color:var(--mut)}
+  input[type=range]{flex:1;accent-color:var(--acc)}
+  input[type=number]{width:74px;background:#0f1216;color:var(--txt);border:1px solid var(--line);border-radius:6px;padding:5px}
+  .big{font-size:42px;font-weight:750;font-variant-numeric:tabular-nums;line-height:1}
+  .unit{font-size:16px;color:var(--mut);font-weight:500}
+  .motors{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+  .mot{border:1px solid var(--line);border-radius:10px;padding:12px;background:#12161b}
+  .mot h3{margin:0 0 6px;font-size:14px;display:flex;justify-content:space-between}
+  .bar{height:150px;background:#0b0e12;border:1px solid var(--line);border-radius:8px;position:relative;overflow:hidden}
+  .bar .cmd,.bar .real{position:absolute;bottom:0;left:0;right:0;transition:height .08s}
+  .bar .cmd{background:color-mix(in srgb,var(--c) 30%,transparent)}
+  .bar .real{left:35%;right:35%;background:var(--c);border-radius:4px 4px 0 0}
+  .bar .lim{position:absolute;left:0;right:0;border-top:2px dashed var(--bad);opacity:.7}
+  .val{font-variant-numeric:tabular-nums;font-size:22px;font-weight:700;margin-top:6px}
+  .mut{color:var(--mut);font-size:12px}
+  .keys{display:flex;gap:8px;align-items:center;justify-content:center;margin-top:12px}
+  .key{width:64px;height:54px;border-radius:10px;border:1px solid var(--line);background:#1d232b;display:grid;place-items:center;font-weight:750;font-size:18px;user-select:none;cursor:pointer}
+  .key.on{background:var(--acc);color:#04121f;border-color:var(--acc)}
+  .diff{flex:1;max-width:260px;height:10px;background:#0b0e12;border:1px solid var(--line);border-radius:6px;position:relative}
+  .diff i{position:absolute;top:-4px;width:4px;height:16px;background:var(--warn);border-radius:2px;left:50%;transform:translateX(-50%)}
+  .diff::after{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;border-left:1px solid var(--mut)}
+  .tabs{display:flex;gap:6px;margin-bottom:10px}
+  .tabs button.sel{background:var(--acc);color:#04121f;border-color:var(--acc);font-weight:650}
+  #log{height:180px;overflow:auto;background:#0b0e12;border:1px solid var(--line);border-radius:8px;padding:8px;font:12px/1.4 Consolas,monospace;color:#b9c2cf;white-space:pre-wrap}
+  .hint{font-size:12px;color:var(--mut);margin-top:6px}
+  .kbd{display:inline-block;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:0 6px;font:12px Consolas,monospace;color:var(--txt);background:#1d232b}
+  .warnbox{background:#2a1d08;border:1px solid #6b4b10;color:#ffd38a;border-radius:10px;padding:10px 12px;font-size:13px}
+  .hide{display:none!important}
+</style>
+</head>
+<body>
+<header>
+  <h1>Medio dron · Hover</h1>
+  <button id="btnCon" class="pri">Conectar ESP32</button>
+  <button id="btnArm" disabled>Armar</button>
+  <button id="btnDes" class="warn" disabled>Desarmar</button>
+  <span id="stCon" class="pill">Desconectado</span>
+  <span id="stArm" class="pill">Sin armar</span>
+  <button id="paro">PARO (Espacio)</button>
+</header>
+
+<main>
+  <div>
+    <section id="noSerial" class="warnbox hide" style="margin-bottom:14px">
+      Este navegador no soporta Web Serial. Abre este archivo con <b>Google Chrome</b> o <b>Microsoft Edge</b>.
+    </section>
+
+    <section>
+      <div class="tabs">
+        <button id="tabHover" class="sel">Hover (los dos juntos)</button>
+        <button id="tabInd">Individual</button>
+      </div>
+
+      <div id="panHover">
+        <div class="row" style="align-items:flex-end">
+          <div><div class="mut">Potencia base</div><div class="big"><span id="baseTxt">0.0</span><span class="unit"> %</span></div></div>
+          <div class="mut" style="margin-left:auto;text-align:right"><span class="kbd">W</span> / <span class="kbd">S</span> sube / baja 0.5 %<br><span class="kbd">Shift</span> + W/S = 2 %</div>
+        </div>
+        <div class="row"><input id="base" type="range" min="0" max="40" step="0.5" value="0"></div>
+      </div>
+
+      <div id="panInd" class="hide">
+        <div class="row"><label>Motor 1 (D13)</label><input id="ind1" type="range" min="0" max="40" step="0.5" value="0"><input id="ind1n" type="number" step="0.5" value="0"></div>
+        <div class="row"><label>Motor 2 (D15)</label><input id="ind2" type="range" min="0" max="40" step="0.5" value="0"><input id="ind2n" type="number" step="0.5" value="0"></div>
+        <div class="hint">En este modo los coeficientes y la rotación no se aplican: cada motor recibe exactamente lo que marques.</div>
+      </div>
+
+      <div class="motors">
+        <div class="mot" style="--c:var(--m1)">
+          <h3><span>Motor 1 · D13</span><span class="mut">izquierdo</span></h3>
+          <div class="bar"><div class="cmd" id="b1c"></div><div class="real" id="b1r"></div></div>
+          <div class="val"><span id="v1">0.0</span> % <span class="mut">pedido · real <span id="r1">0.0</span> %</span></div>
+        </div>
+        <div class="mot" style="--c:var(--m2)">
+          <h3><span>Motor 2 · D15</span><span class="mut">derecho</span></h3>
+          <div class="bar"><div class="cmd" id="b2c"></div><div class="real" id="b2r"></div></div>
+          <div class="val"><span id="v2">0.0</span> % <span class="mut">pedido · real <span id="r2">0.0</span> %</span></div>
+        </div>
+      </div>
+
+      <div class="keys" id="rotBox">
+        <div class="key" id="kA">A</div>
+        <div class="diff"><i id="diffDot"></i></div>
+        <div class="key" id="kD">D</div>
+      </div>
+      <div class="hint" style="text-align:center">Mantén <span class="kbd">A</span> o <span class="kbd">D</span> para rotar despacio: uno sube y el otro baja la misma cantidad. Al soltar regresa al centro.</div>
+    </section>
+  </div>
+
+  <div>
+    <section>
+      <h2>Coeficientes</h2>
+      <div class="row"><label>Ganancia motor 1 (k1)</label><input id="k1" type="range" min="0.80" max="1.20" step="0.01" value="1"><input id="k1n" type="number" step="0.01" value="1"></div>
+      <div class="row"><label>Ganancia motor 2 (k2)</label><input id="k2" type="range" min="0.80" max="1.20" step="0.01" value="1"><input id="k2n" type="number" step="0.01" value="1"></div>
+      <div class="row"><label>Ajuste motor 1 (%)</label><input id="t1" type="range" min="-10" max="10" step="0.5" value="0"><input id="t1n" type="number" step="0.5" value="0"></div>
+      <div class="row"><label>Ajuste motor 2 (%)</label><input id="t2" type="range" min="-10" max="10" step="0.5" value="0"><input id="t2n" type="number" step="0.5" value="0"></div>
+      <div class="hint">Motor = base × k + ajuste ± rotación. Si el dron se inclina hacia un lado en hover, sube un poco la k (o el ajuste) del motor de ese lado.</div>
+
+      <h2 style="margin-top:16px">Rotación (A / D)</h2>
+      <div class="row"><label>Diferencia máxima (%)</label><input id="kr" type="range" min="0" max="8" step="0.25" value="2"><input id="krn" type="number" step="0.25" value="2"></div>
+      <div class="row"><label>Suavidad (%/s)</label><input id="kv" type="range" min="0.5" max="10" step="0.5" value="3"><input id="kvn" type="number" step="0.5" value="3"></div>
+      <div class="row"><label>Invertir A/D</label><input id="inv" type="checkbox"></div>
+
+      <h2 style="margin-top:16px">Seguridad</h2>
+      <div class="row"><label>Límite de acelerador (%)</label><input id="max" type="range" min="5" max="80" step="5" value="40"><input id="maxn" type="number" step="5" value="40"></div>
+      <div class="row" style="gap:6px">
+        <button id="btnSave">Guardar coeficientes</button>
+        <button id="btnReset">Restablecer</button>
+      </div>
+    </section>
+
+    <section style="margin-top:14px">
+      <h2>Mensajes del ESP32 <span class="mut" style="text-transform:none;letter-spacing:0;float:right">enviando: <b id="enviado">—</b></span></h2>
+      <div id="log"></div>
+      <div class="hint"><span class="kbd">Espacio</span> o <span class="kbd">Esc</span> = paro. Si cierras la página o se suelta el USB, el ESP32 para y desarma en 1 s.</div>
+    </section>
+  </div>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+const S = {
+  port:null, writer:null, reader:null, con:false, armed:false,
+  mode:'hover', base:0, ind:[0,0], k:[1,1], t:[0,0], kr:2, kv:3, inv:false, max:40,
+  diff:0, keyA:false, keyD:false, real:[0,0], out:[0,0]
+};
+
+// ---------- serial ----------
+const log = s => { const l=$('log'); l.textContent += s+'\n'; if(l.textContent.length>20000) l.textContent=l.textContent.slice(-15000); l.scrollTop=l.scrollHeight; };
+async function send(s){ if(!S.writer) return; try{ await S.writer.write(s+'\n'); }catch(e){ log('[error al enviar] '+e); } }
+
+async function conectar(){
+  if(S.con){ return desconectar(); }
+  try{
+    S.port = await navigator.serial.requestPort();
+    await S.port.open({ baudRate:115200 });
+    try{ await S.port.setSignals({ dataTerminalReady:false, requestToSend:false }); }catch(e){}
+  }catch(e){ log('No se pudo abrir el puerto: '+e.message+'\n(¿Está abierto el Monitor Serie del Arduino IDE? Ciérralo.)'); return; }
+  const enc = new TextEncoderStream(); enc.readable.pipeTo(S.port.writable); S.writer = enc.writable.getWriter();
+  const dec = new TextDecoderStream(); S.port.readable.pipeTo(dec.writable).catch(()=>{}); S.reader = dec.readable.getReader();
+  S.con = true; ui(); log('Conectado. Espera "LISTO" y luego presiona Armar.');
+  leer();
+}
+async function leer(){
+  let buf='';
+  try{
+    while(S.con){
+      const {value,done} = await S.reader.read(); if(done) break;
+      buf += value; let i;
+      while((i=buf.indexOf('\n'))>=0){ linea(buf.slice(0,i).trim()); buf=buf.slice(i+1); }
+    }
+  }catch(e){ log('[puerto perdido] '+e.message); }
+  if(S.con) desconectar(true);
+}
+function linea(l){
+  if(!l) return;
+  if(l.startsWith('EST ')){
+    const p=l.split(' '); const arm=p[1]==='1';
+    S.real=[+p[2],+p[3]];
+    if(arm!==S.armed){ S.armed=arm; ui(); }
+    return;
+  }
+  log(l);
+  if(l.startsWith('LISTO hover')) S.fwOk=true;
+  if(/^Armado\.|Banco de empuje|Primero escribe/.test(l)){
+    log('⚠️ El ESP32 tiene cargado el firmware del BANCO DE EMPUJE (1 motor). Sube hover_2motores.ino con el Arduino IDE.');
+  }
+  if(l==='ARMADO'){ S.armed=true; ui(); }
+  if(l==='DESARMADO'){ S.armed=false; ui(); }
+}
+async function desconectar(perdido){
+  S.con=false; S.armed=false;
+  if(!perdido){ await send('desarmar'); }
+  try{ S.reader && await S.reader.cancel(); }catch(e){}
+  try{ S.writer && S.writer.releaseLock(); }catch(e){}
+  try{ S.port && await S.port.close(); }catch(e){}
+  S.port=S.writer=S.reader=null; ui(); log('Desconectado.');
+}
+
+// ---------- control ----------
+function paro(){
+  S.base=0; S.ind=[0,0]; S.diff=0; S.keyA=S.keyD=false;
+  send('s'); sync(); log('>> PARO');
+}
+async function armar(){ paro(); await send('max '+S.max); await send('armar'); log('Armando… (3 s)'); }
+async function desarmar(){ paro(); await send('desarmar'); }
+
+const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+function calcular(dt){
+  // rotación suave hacia el objetivo
+  let objetivo = 0;
+  if(S.keyA && !S.keyD) objetivo = -S.kr;
+  if(S.keyD && !S.keyA) objetivo =  S.kr;
+  if(S.inv) objetivo = -objetivo;
+  const paso = S.kv*dt;
+  S.diff += clamp(objetivo - S.diff, -paso, paso);
+
+  let m1, m2;
+  if(S.mode==='ind'){ m1=S.ind[0]; m2=S.ind[1]; }
+  else if(S.base < 1){ m1=0; m2=0; }
+  else {
+    m1 = S.base*S.k[0] + S.t[0] + S.diff;
+    m2 = S.base*S.k[1] + S.t[1] - S.diff;
+  }
+  S.out=[clamp(m1,0,S.max), clamp(m2,0,S.max)];
+}
+
+let tPrev=performance.now(), tSend=0, tHb=0;
+function tick(t){
+  const dt=(t-tPrev)/1000; tPrev=t;
+  calcular(dt);
+  if(S.con){
+    if(t-tHb>250){ tHb=t; send('hb'); }
+    if(S.armed && t-tSend>50){ tSend=t; const cmd=`m ${S.out[0].toFixed(1)} ${S.out[1].toFixed(1)}`; send(cmd); if(cmd!==S.ultimoCmd){ S.ultimoCmd=cmd; $('enviado').textContent=cmd; } }
+  }
+  pintar();
+  requestAnimationFrame(tick);
+}
+
+// ---------- UI ----------
+function pintar(){
+  const h=v=>clamp(v/S.max*100,0,100)+'%';   // barras a escala 0 - límite
+  $('b1c').style.height=h(S.out[0]); $('b2c').style.height=h(S.out[1]);
+  $('b1r').style.height=h(S.real[0]); $('b2r').style.height=h(S.real[1]);
+  $('v1').textContent=S.out[0].toFixed(1); $('v2').textContent=S.out[1].toFixed(1);
+  $('r1').textContent=S.real[0].toFixed(1); $('r2').textContent=S.real[1].toFixed(1);
+  $('baseTxt').textContent=S.base.toFixed(1);
+  const pos = S.kr>0 ? 50 + (S.diff/Math.max(S.kr,0.01))*45 : 50;
+  $('diffDot').style.left=pos+'%';
+  $('kA').classList.toggle('on',S.keyA); $('kD').classList.toggle('on',S.keyD);
+}
+function ui(){
+  $('btnCon').textContent = S.con ? 'Desconectar' : 'Conectar ESP32';
+  $('btnArm').disabled = !S.con; $('btnDes').disabled = !S.con;
+  $('stCon').textContent = S.con ? 'Conectado' : 'Desconectado';
+  $('stCon').className = 'pill'+(S.con?' on':'');
+  $('stArm').textContent = S.armed ? 'ARMADO · cuidado con las hélices' : 'Sin armar';
+  $('stArm').className = 'pill'+(S.armed?' arm':'');
+}
+function sync(){
+  $('base').value=S.base; $('ind1').value=$('ind1n').value=S.ind[0]; $('ind2').value=$('ind2n').value=S.ind[1];
+}
+
+// pares slider + número
+function par(id, set){
+  const r=$(id), n=$(id+'n');
+  const f = v => { v=parseFloat(v); if(isNaN(v)) return; v=clamp(v,+r.min,+r.max); r.value=v; if(n) n.value=v; set(v); };
+  r.addEventListener('input',()=>f(r.value));
+  if(n) n.addEventListener('change',()=>f(n.value));
+  return f;
+}
+const setK1=par('k1',v=>S.k[0]=v), setK2=par('k2',v=>S.k[1]=v);
+const setT1=par('t1',v=>S.t[0]=v), setT2=par('t2',v=>S.t[1]=v);
+const setKr=par('kr',v=>S.kr=v), setKv=par('kv',v=>S.kv=v);
+par('ind1',v=>S.ind[0]=v); par('ind2',v=>S.ind[1]=v);
+$('base').addEventListener('input',e=>{ S.base=+e.target.value; avisoArmar(); });
+['ind1','ind2'].forEach(id=>$(id).addEventListener('input',avisoArmar));
+let tAviso=0;
+function avisoArmar(){
+  const t=performance.now(); if(t-tAviso<3000) return; tAviso=t;
+  if(!S.con) log('⚠️ Primero presiona "Conectar ESP32".');
+  else if(!S.armed) log(S.fwOk ? '⚠️ Presiona "Armar" y espera a que diga ARMADO.' : '⚠️ No llegó "LISTO hover_2motores". ¿Subiste hover_2motores.ino? Presiona EN en el ESP32 o vuelve a conectar.');
+}
+const setMax=par('max',v=>{
+  S.max=v; ['base','ind1','ind2'].forEach(id=>$(id).max=v);
+  S.base=Math.min(S.base,v); S.ind=S.ind.map(x=>Math.min(x,v)); sync();
+  if(S.con) send('max '+v);
+});
+$('inv').addEventListener('change',e=>S.inv=e.target.checked);
+
+function modo(m){
+  paro(); S.mode=m;
+  $('tabHover').classList.toggle('sel',m==='hover'); $('tabInd').classList.toggle('sel',m==='ind');
+  $('panHover').classList.toggle('hide',m!=='hover'); $('panInd').classList.toggle('hide',m!=='ind');
+}
+$('tabHover').onclick=()=>modo('hover'); $('tabInd').onclick=()=>modo('ind');
+
+$('btnCon').onclick=conectar; $('btnArm').onclick=armar; $('btnDes').onclick=desarmar; $('paro').onclick=paro;
+
+// teclado
+const enInput = e => e.target.tagName==='INPUT' && e.target.type==='number';
+addEventListener('keydown',e=>{
+  if(e.code==='Space'||e.code==='Escape'){ e.preventDefault(); paro(); return; }
+  if(enInput(e)) return;
+  if(e.code==='KeyA'){ S.keyA=true; }
+  if(e.code==='KeyD'){ S.keyD=true; }
+  if(S.mode==='hover' && (e.code==='KeyW'||e.code==='KeyS')){
+    e.preventDefault();
+    const d=(e.shiftKey?2:0.5)*(e.code==='KeyW'?1:-1);
+    S.base=clamp(Math.round((S.base+d)*2)/2,0,S.max); sync(); avisoArmar();
+  }
+});
+addEventListener('keyup',e=>{ if(e.code==='KeyA') S.keyA=false; if(e.code==='KeyD') S.keyD=false; });
+addEventListener('blur',()=>{ S.keyA=S.keyD=false; });   // si cambias de ventana, suelta la rotación
+// botones A/D con mouse o dedo
+[['kA','keyA'],['kD','keyD']].forEach(([id,k])=>{
+  const el=$(id);
+  el.addEventListener('pointerdown',e=>{ S[k]=true; el.setPointerCapture(e.pointerId); });
+  el.addEventListener('pointerup',()=>S[k]=false); el.addEventListener('pointercancel',()=>S[k]=false);
+});
+
+// guardar coeficientes en el navegador
+const CLAVE='hover2m_coef';
+$('btnSave').onclick=()=>{ try{ localStorage.setItem(CLAVE,JSON.stringify({k:S.k,t:S.t,kr:S.kr,kv:S.kv,inv:S.inv,max:S.max})); log('Coeficientes guardados.'); }catch(e){ log('No se pudo guardar: '+e.message); } };
+$('btnReset').onclick=()=>{ setK1(1);setK2(1);setT1(0);setT2(0);setKr(2);setKv(3);$('inv').checked=S.inv=false; };
+try{
+  const c=JSON.parse(localStorage.getItem(CLAVE)||'null');
+  if(c){ setK1(c.k[0]);setK2(c.k[1]);setT1(c.t[0]);setT2(c.t[1]);setKr(c.kr);setKv(c.kv);$('inv').checked=S.inv=!!c.inv;setMax(c.max); log('Coeficientes cargados.'); }
+}catch(e){}
+
+if(!('serial' in navigator)){ $('noSerial').classList.remove('hide'); $('btnCon').disabled=true; }
+ui(); requestAnimationFrame(tick);
+</script>
+</body>
+</html>
