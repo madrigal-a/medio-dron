@@ -8,6 +8,7 @@ poder rotar de forma controlada.
 | Carpeta | Estado | Qué es |
 |---|---|---|
 | [`v0-prueba-motores/`](v0-prueba-motores) | ✅ Pruebas | Test de motores EX1103: banco de empuje impreso en 3D y control manual de 2 motores desde una página web. Sirve como base y referencia. |
+| [`hardware/`](hardware) | 🚧 En diseño | PCBs en KiCad 9: placa principal (ESP32-C3) y placa de sensores (IMU + barómetro). |
 | _próximamente_ | 🚧 | Proyecto completo del medio dron con control. |
 
 ## Hardware actual

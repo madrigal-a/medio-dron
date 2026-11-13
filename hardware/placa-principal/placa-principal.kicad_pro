@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "filename": "placa-principal.kicad_pro",
+    "version": 3
+  },
+  "schematic": {
+    "legacy_lib_dir": "",
+    "legacy_lib_list": []
+  },
+  "sheets": [
+    [
+      "cbbfc9a4-377a-400e-b95e-4ad089ccc89f",
+      "Root"
+    ]
+  ],
+  "text_variables": {}
+}

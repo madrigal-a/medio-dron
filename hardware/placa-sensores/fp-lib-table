@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "medio_dron")(type "KiCad")(uri "${KIPRJMOD}/../lib/medio_dron.pretty")(options "")(descr "Huellas propias del medio dron"))
+)

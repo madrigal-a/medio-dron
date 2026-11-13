@@ -1,0 +1,8 @@
+"Reference","Value","Footprint","MPN","QUANTITY"
+"C1-C4","100n","Capacitor_SMD:C_0603_1608Metric","","4"
+"C5","2.2u","Capacitor_SMD:C_0603_1608Metric","","1"
+"J1","Qwiic (JST-SH 4p)","Connector_JST:JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal","SM04B-SRSS-TB","1"
+"TP1","INT1","TestPoint:TestPoint_Pad_D1.0mm","","1"
+"TP2","INT_BARO","TestPoint:TestPoint_Pad_D1.0mm","","1"
+"U1","LSM6DSV16X","Package_LGA:LGA-14_3x2.5mm_P0.5mm_LayoutBorder3x4y","LSM6DSV16XTR","1"
+"U2","ICP-20100","medio_dron:TDK_ICP-20100_LGA-10_2x2mm_P0.5mm","ICP-20100","1"
