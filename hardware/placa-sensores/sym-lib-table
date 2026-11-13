@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "medio_dron")(type "KiCad")(uri "${KIPRJMOD}/../lib/medio_dron.kicad_sym")(options "")(descr "Simbolos propios del medio dron"))
+)

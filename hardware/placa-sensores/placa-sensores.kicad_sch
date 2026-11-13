@@ -1,0 +1,1363 @@
+(kicad_sch (version 20250114) (generator "eeschema") (generator_version "9.0") (uuid "64672d70-c7c9-5e10-a19d-8468a1cc7383") (paper "A4")
+(title_block (title "Medio dron - Placa de sensores (IMU + barometro)") (date "2026-11-13") (rev "v1.0") (company "Medio dron 2 GDL") (comment 1 ""))
+(lib_symbols
+(symbol "Connector_Generic_MountingPin:Conn_01x04_MountingPin"
+		(pin_names
+			(offset 1.016)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "J"
+			(at 0 5.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Conn_01x04_MountingPin"
+			(at 1.27 -7.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connectable mounting pin connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "connector"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_fp_filters" "Connector*:*_1x??-1MP*"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "Conn_01x04_MountingPin_1_1"
+			(rectangle
+				(start -1.27 3.81)
+				(end 1.27 -6.35)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+			(rectangle
+				(start -1.27 2.667)
+				(end 0 2.413)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start -1.27 0.127)
+				(end 0 -0.127)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start -1.27 -2.413)
+				(end 0 -2.667)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start -1.27 -4.953)
+				(end 0 -5.207)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -1.016 -7.112) (xy 1.016 -7.112)
+				)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(text "Mounting"
+				(at 0 -6.731 0)
+				(effects
+					(font
+						(size 0.381 0.381)
+					)
+				)
+			)
+			(pin passive line
+				(at -5.08 2.54 0)
+				(length 3.81)
+				(name "Pin_1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -5.08 0 0)
+				(length 3.81)
+				(name "Pin_2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -5.08 -2.54 0)
+				(length 3.81)
+				(name "Pin_3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -5.08 -5.08 0)
+				(length 3.81)
+				(name "Pin_4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 0 -10.16 90)
+				(length 3.048)
+				(name "MountPin"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "MP"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+(symbol "power:GND"
+		(power)
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "#PWR"
+			(at 0 -6.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 0 -3.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "global power"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "GND_0_1"
+			(polyline
+				(pts
+					(xy 0 0) (xy 0 -1.27) (xy 1.27 -1.27) (xy 0 -2.54) (xy -1.27 -1.27) (xy 0 -1.27)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "GND_1_1"
+			(pin power_in line
+				(at 0 0 270)
+				(length 0)
+				(name "~"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+(symbol "power:+3V3"
+		(power)
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "#PWR"
+			(at 0 -3.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 0 3.556 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "global power"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "+3V3_0_1"
+			(polyline
+				(pts
+					(xy -0.762 1.27) (xy 0 2.54)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 2.54) (xy 0.762 1.27)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 0) (xy 0 2.54)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "+3V3_1_1"
+			(pin power_in line
+				(at 0 0 90)
+				(length 0)
+				(name "~"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+(symbol "medio_dron:LSM6DSV16X" (exclude_from_sim no) (in_bom yes) (on_board yes)
+(property "Reference" "U" (at -17.78 16.51 0) (effects (font (size 1.27 1.27)) (justify left)))(property "Value" "LSM6DSV16X" (at -17.78 13.97 0) (effects (font (size 1.27 1.27)) (justify left)))(property "Footprint" "Package_LGA:LGA-14_3x2.5mm_P0.5mm_LayoutBorder3x4y" (at 0.00 0.00 0) (effects (font (size 1.27 1.27)) (hide yes)))(property "Datasheet" "https://www.st.com/resource/en/datasheet/lsm6dsv16x.pdf" (at 0.00 0.00 0) (effects (font (size 1.27 1.27)) (hide yes)))(property "Description" "IMU 6 ejes (acelerometro + giroscopio), I2C/SPI/I3C, LGA-14L 2.5x3 mm" (at 0.00 0.00 0) (effects (font (size 1.27 1.27)) (hide yes)))(symbol "LSM6DSV16X_0_1" (rectangle (start -17.78 12.70) (end 17.78 -12.70) (stroke (width 0.254) (type default)) (fill (type background))))(symbol "LSM6DSV16X_1_1" (pin power_in line (at -20.32 10.16 0) (length 2.54) (name "VDD" (effects (font (size 1.27 1.27)))) (number "8" (effects (font (size 1.27 1.27)))))
+(pin power_in line (at -20.32 7.62 0) (length 2.54) (name "VDD_IO" (effects (font (size 1.27 1.27)))) (number "5" (effects (font (size 1.27 1.27)))))
+(pin input line (at -20.32 2.54 0) (length 2.54) (name "CS" (effects (font (size 1.27 1.27)))) (number "12" (effects (font (size 1.27 1.27)))))
+(pin input line (at -20.32 0.00 0) (length 2.54) (name "SCL" (effects (font (size 1.27 1.27)))) (number "13" (effects (font (size 1.27 1.27)))))
+(pin bidirectional line (at -20.32 -2.54 0) (length 2.54) (name "SDA" (effects (font (size 1.27 1.27)))) (number "14" (effects (font (size 1.27 1.27)))))
+(pin input line (at -20.32 -5.08 0) (length 2.54) (name "SDO/SA0" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
+(pin power_in line (at -20.32 -10.16 0) (length 2.54) (name "GND" (effects (font (size 1.27 1.27)))) (number "6" (effects (font (size 1.27 1.27)))))
+(pin passive line (at -20.32 -10.16 0) (length 2.54) (hide yes) (name "GND" (effects (font (size 1.27 1.27)))) (number "7" (effects (font (size 1.27 1.27)))))
+(pin output line (at 20.32 10.16 180) (length 2.54) (name "INT1" (effects (font (size 1.27 1.27)))) (number "4" (effects (font (size 1.27 1.27)))))
+(pin output line (at 20.32 7.62 180) (length 2.54) (name "INT2" (effects (font (size 1.27 1.27)))) (number "9" (effects (font (size 1.27 1.27)))))
+(pin passive line (at 20.32 2.54 180) (length 2.54) (name "SDx/AH1/Qvar1" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))
+(pin passive line (at 20.32 0.00 180) (length 2.54) (name "SCx/AH2/Qvar2" (effects (font (size 1.27 1.27)))) (number "3" (effects (font (size 1.27 1.27)))))
+(pin passive line (at 20.32 -5.08 180) (length 2.54) (name "OCS_Aux" (effects (font (size 1.27 1.27)))) (number "10" (effects (font (size 1.27 1.27)))))
+(pin passive line (at 20.32 -7.62 180) (length 2.54) (name "SDO_Aux" (effects (font (size 1.27 1.27)))) (number "11" (effects (font (size 1.27 1.27)))))) (embedded_fonts no))
+(symbol "medio_dron:ICP-20100" (exclude_from_sim no) (in_bom yes) (on_board yes)
+(property "Reference" "U" (at -12.70 16.51 0) (effects (font (size 1.27 1.27)) (justify left)))(property "Value" "ICP-20100" (at -12.70 13.97 0) (effects (font (size 1.27 1.27)) (justify left)))(property "Footprint" "medio_dron:TDK_ICP-20100_LGA-10_2x2mm_P0.5mm" (at 0.00 0.00 0) (effects (font (size 1.27 1.27)) (hide yes)))(property "Datasheet" "https://invensense.tdk.com/wp-content/uploads/2021/11/DS-000416-ICP-20100-v1.4.pdf" (at 0.00 0.00 0) (effects (font (size 1.27 1.27)) (hide yes)))(property "Description" "Barometro + temperatura, I2C/SPI/I3C, LGA-10L 2x2 mm" (at 0.00 0.00 0) (effects (font (size 1.27 1.27)) (hide yes)))(symbol "ICP-20100_0_1" (rectangle (start -12.70 12.70) (end 12.70 -12.70) (stroke (width 0.254) (type default)) (fill (type background))))(symbol "ICP-20100_1_1" (pin power_in line (at -15.24 10.16 0) (length 2.54) (name "VDD" (effects (font (size 1.27 1.27)))) (number "5" (effects (font (size 1.27 1.27)))))
+(pin power_in line (at -15.24 7.62 0) (length 2.54) (name "VDDIO" (effects (font (size 1.27 1.27)))) (number "10" (effects (font (size 1.27 1.27)))))
+(pin input line (at -15.24 2.54 0) (length 2.54) (name "CSB" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
+(pin input line (at -15.24 0.00 0) (length 2.54) (name "SCL" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))
+(pin bidirectional line (at -15.24 -2.54 0) (length 2.54) (name "SDA" (effects (font (size 1.27 1.27)))) (number "4" (effects (font (size 1.27 1.27)))))
+(pin input line (at -15.24 -5.08 0) (length 2.54) (name "SDO/AD0" (effects (font (size 1.27 1.27)))) (number "6" (effects (font (size 1.27 1.27)))))
+(pin power_in line (at -15.24 -10.16 0) (length 2.54) (name "VSS" (effects (font (size 1.27 1.27)))) (number "3" (effects (font (size 1.27 1.27)))))
+(pin open_collector line (at 15.24 10.16 180) (length 2.54) (name "INT" (effects (font (size 1.27 1.27)))) (number "7" (effects (font (size 1.27 1.27)))))
+(pin passive line (at 15.24 5.08 180) (length 2.54) (name "RESV" (effects (font (size 1.27 1.27)))) (number "8" (effects (font (size 1.27 1.27)))))
+(pin passive line (at 15.24 2.54 180) (length 2.54) (name "RESV" (effects (font (size 1.27 1.27)))) (number "9" (effects (font (size 1.27 1.27)))))) (embedded_fonts no))
+(symbol "Device:C"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0.254)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "C"
+			(at 0.635 2.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "C"
+			(at 0.635 -2.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 0.9652 -3.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "cap capacitor"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_fp_filters" "C_*"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "C_0_1"
+			(polyline
+				(pts
+					(xy -2.032 0.762) (xy 2.032 0.762)
+				)
+				(stroke
+					(width 0.508)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -2.032 -0.762) (xy 2.032 -0.762)
+				)
+				(stroke
+					(width 0.508)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "C_1_1"
+			(pin passive line
+				(at 0 3.81 270)
+				(length 2.794)
+				(name "~"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 0 -3.81 90)
+				(length 2.794)
+				(name "~"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+(symbol "Connector:TestPoint"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0.762)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "TP"
+			(at 0 6.858 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TestPoint"
+			(at 0 5.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 5.08 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 5.08 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "test point tp"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_fp_filters" "Pin* Test*"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "TestPoint_0_1"
+			(circle
+				(center 0 3.302)
+				(radius 0.762)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "TestPoint_1_1"
+			(pin passive line
+				(at 0 0 90)
+				(length 2.54)
+				(name "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+(symbol "power:PWR_FLAG"
+		(power)
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "#FLG"
+			(at 0 1.905 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 0 3.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "flag power"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "PWR_FLAG_0_0"
+			(pin power_out line
+				(at 0 0 90)
+				(length 0)
+				(name "~"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(symbol "PWR_FLAG_0_1"
+			(polyline
+				(pts
+					(xy 0 0) (xy 0 1.27) (xy -1.016 1.905) (xy 0 2.54) (xy 1.016 1.905) (xy 0 1.27)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+(symbol "Mechanical:MountingHole"
+		(pin_names
+			(offset 1.016)
+		)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(property "Reference" "H"
+			(at 0 5.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "MountingHole"
+			(at 0 3.175 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Mounting Hole without connection"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "mounting hole"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_fp_filters" "MountingHole*"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "MountingHole_0_1"
+			(circle
+				(center 0 0)
+				(radius 1.27)
+				(stroke
+					(width 1.27)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(embedded_fonts no)
+	))
+(rectangle (start 15.00 20.00) (end 75.00 115.00) (stroke (width 0.15) (type dash)) (fill (type none)) (uuid "688742df-7dcc-4642-8eb8-7bfd284b5f14"))
+(text "Conector Qwiic" (exclude_from_sim no) (at 16.50 24.00 0) (effects (font (size 2.0 2.0) (bold yes)) (justify left bottom)) (uuid "161e7128-c2cb-4458-8ecd-82917318717f"))
+(symbol (lib_id "Connector_Generic_MountingPin:Conn_01x04_MountingPin") (at 48.26 60.96 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "b1f75547-1076-5eab-bfbd-400675277587")
+  (property "Reference" "J1" (at 48.26 55.88 0) (effects (font (size 1.27 1.27)) (justify left)))
+  (property "Value" "Qwiic (JST-SH 4p)" (at 49.53 68.58 0) (effects (font (size 1.27 1.27)) (justify left)))
+  (property "Footprint" "Connector_JST:JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal" (at 48.26 60.96 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "~" (at 48.26 60.96 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "Generic connectable mounting pin connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)" (at 48.26 60.96 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "MPN" "SM04B-SRSS-TB" (at 48.26 60.96 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "ccfc7c78-d933-46c3-877e-62442444ae6d"))
+  (pin "2" (uuid "ca89bafc-5eb1-4d55-ad47-d333bdd4e6a8"))
+  (pin "3" (uuid "d0ff2b3c-4dd9-4b84-9d8d-5e36872f9930"))
+  (pin "4" (uuid "3941d4af-78f0-47b3-b8a9-6a433b1fc49b"))
+  (pin "MP" (uuid "5012dc03-1d84-4931-a9f4-6716b51332e1"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "J1") (unit 1)))))
+(wire (pts (xy 43.18 58.42) (xy 33.02 58.42)) (stroke (width 0) (type default)) (uuid "37bbafb6-9bf6-47a3-b1d5-52c9d6f82572"))
+(symbol (lib_id "power:GND") (at 33.02 58.42 270) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "bd44a3ed-d464-5e63-be7b-10eee9afbcf4")
+  (property "Reference" "#PWR001" (at 33.02 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "GND" (at 29.42 58.42 90) (effects (font (size 1.27 1.27)) (justify right)))
+  (property "Footprint" "" (at 33.02 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 33.02 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 33.02 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "a16930cd-375f-46ee-a248-78435868b184"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR001") (unit 1)))))
+(wire (pts (xy 43.18 60.96) (xy 40.64 60.96)) (stroke (width 0) (type default)) (uuid "169de29d-7c20-47ba-9878-9447d0b8bc45"))
+(symbol (lib_id "power:+3V3") (at 40.64 60.96 90) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "abadb76a-09ba-5552-b554-652e6c195e34")
+  (property "Reference" "#PWR002" (at 40.64 60.96 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "+3V3" (at 37.04 60.96 90) (effects (font (size 1.27 1.27)) (justify left)))
+  (property "Footprint" "" (at 40.64 60.96 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 40.64 60.96 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 40.64 60.96 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "e1d2f5fd-b902-4dfc-8ace-041524e0b4cd"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR002") (unit 1)))))
+(wire (pts (xy 43.18 63.50) (xy 40.64 63.50)) (stroke (width 0) (type default)) (uuid "499e5360-0004-4074-99fd-5ea776f44f6a"))
+(label "SDA" (at 40.64 63.50 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "e8d9e181-7056-41f8-9e4f-07018a4a0bc1"))
+(wire (pts (xy 43.18 66.04) (xy 40.64 66.04)) (stroke (width 0) (type default)) (uuid "c81f4e01-dad0-4e8f-b7c6-9a45770f011d"))
+(label "SCL" (at 40.64 66.04 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "b1ccbe9a-0534-4317-afed-a9b8c9cbf318"))
+(wire (pts (xy 48.26 71.12) (xy 48.26 73.66)) (stroke (width 0) (type default)) (uuid "a4cadd70-b378-4798-bf36-85feee501132"))
+(symbol (lib_id "power:GND") (at 48.26 73.66 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "dd038b8d-632c-522b-aafb-6ed8ad7a75c1")
+  (property "Reference" "#PWR003" (at 48.26 73.66 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "GND" (at 48.26 78.26 0) (effects (font (size 1.27 1.27))))
+  (property "Footprint" "" (at 48.26 73.66 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 48.26 73.66 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 48.26 73.66 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "e8b7fa4f-5b6c-48a1-ae18-d8c5023c7e81"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR003") (unit 1)))))
+(text "Qwiic: 1 GND, 2 3V3, 3 SDA, 4 SCL\nLos pull-ups de I2C van en la\nplaca principal." (exclude_from_sim no) (at 18.00 92.00 0) (effects (font (size 1.3 1.3)) (justify left bottom)) (uuid "baf43b8c-77a8-4582-8347-8cb0e1a93530"))
+(rectangle (start 80.00 20.00) (end 180.00 115.00) (stroke (width 0.15) (type dash)) (fill (type none)) (uuid "1425c292-1844-445a-8c86-6ba940eaf63b"))
+(text "IMU  LSM6DSV16X  (I2C 0x6A)" (exclude_from_sim no) (at 81.50 24.00 0) (effects (font (size 2.0 2.0) (bold yes)) (justify left bottom)) (uuid "7923e145-1b56-42a8-898e-35c8426e34c4"))
+(symbol (lib_id "medio_dron:LSM6DSV16X") (at 127.00 66.04 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "7d83b645-ba72-53d3-b60f-2d768ca0a6dd")
+  (property "Reference" "U1" (at 109.22 49.53 0) (effects (font (size 1.27 1.27)) (justify left)))
+  (property "Value" "LSM6DSV16X" (at 109.22 52.07 0) (effects (font (size 1.27 1.27)) (justify left)))
+  (property "Footprint" "Package_LGA:LGA-14_3x2.5mm_P0.5mm_LayoutBorder3x4y" (at 127.00 66.04 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "https://www.st.com/resource/en/datasheet/lsm6dsv16x.pdf" (at 127.00 66.04 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "IMU 6 ejes (acelerometro + giroscopio), I2C/SPI/I3C, LGA-14L 2.5x3 mm" (at 127.00 66.04 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "MPN" "LSM6DSV16XTR" (at 127.00 66.04 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "8" (uuid "6235d924-0f1b-46d3-8135-5b5e1fba744b"))
+  (pin "5" (uuid "c65aeeb8-77ea-472d-afc4-946899956ed5"))
+  (pin "12" (uuid "0f020c30-e670-4597-a929-5c11f7aa5833"))
+  (pin "13" (uuid "9452d640-fa14-4573-beda-ed9786d69edd"))
+  (pin "14" (uuid "cb1ede07-c5e5-41fa-b9c5-3a8cc17bf291"))
+  (pin "1" (uuid "f7b5fd8d-3eca-4670-9570-70f14849d481"))
+  (pin "6" (uuid "24aabc1a-8965-4c50-8c95-c2692d109b92"))
+  (pin "7" (uuid "9ff178e6-223a-49cc-9000-5647b9c88002"))
+  (pin "4" (uuid "225cc44b-7187-4d6a-9e2c-dfeafa42a3eb"))
+  (pin "9" (uuid "1903c164-1564-4633-a318-4b1e90dc6ec8"))
+  (pin "2" (uuid "7112211b-6259-48c8-adf8-fb39fae7083a"))
+  (pin "3" (uuid "e19713fb-ba64-4817-8d7b-023d8ca4e336"))
+  (pin "10" (uuid "db4020fb-bef0-4552-913f-f6705b0c6e97"))
+  (pin "11" (uuid "51bb9af6-14fe-4f2f-860d-027d5717bd92"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "U1") (unit 1)))))
+(wire (pts (xy 106.68 55.88) (xy 104.14 55.88)) (stroke (width 0) (type default)) (uuid "79995f20-c179-420e-b2fa-0e2d20de4318"))
+(symbol (lib_id "power:+3V3") (at 104.14 55.88 90) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "0ab34559-b92f-536f-a4de-4e6a262f2117")
+  (property "Reference" "#PWR004" (at 104.14 55.88 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "+3V3" (at 100.54 55.88 90) (effects (font (size 1.27 1.27)) (justify left)))
+  (property "Footprint" "" (at 104.14 55.88 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 104.14 55.88 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 104.14 55.88 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "79e220a2-d9c4-4988-aafb-922c70058d09"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR004") (unit 1)))))
+(wire (pts (xy 106.68 58.42) (xy 104.14 58.42)) (stroke (width 0) (type default)) (uuid "b2069b05-0133-487c-9e20-0f56fb46ab14"))
+(symbol (lib_id "power:+3V3") (at 104.14 58.42 90) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "010ed5bd-856a-53c7-985a-859373918197")
+  (property "Reference" "#PWR005" (at 104.14 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "+3V3" (at 100.54 58.42 90) (effects (font (size 1.27 1.27)) (justify left)))
+  (property "Footprint" "" (at 104.14 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 104.14 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 104.14 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "83172ada-77fd-4b1a-bc25-22f5d7d80efc"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR005") (unit 1)))))
+(wire (pts (xy 106.68 63.50) (xy 104.14 63.50)) (stroke (width 0) (type default)) (uuid "acc40da6-a00a-446a-b19b-40035a4767ec"))
+(symbol (lib_id "power:+3V3") (at 104.14 63.50 90) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "caf1ab1c-6f73-532e-8f6a-d8f44feca022")
+  (property "Reference" "#PWR006" (at 104.14 63.50 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "+3V3" (at 100.54 63.50 90) (effects (font (size 1.27 1.27)) (justify left)))
+  (property "Footprint" "" (at 104.14 63.50 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 104.14 63.50 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 104.14 63.50 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "a34f59a1-24be-49be-9e65-e083611e9f43"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR006") (unit 1)))))
+(wire (pts (xy 106.68 66.04) (xy 104.14 66.04)) (stroke (width 0) (type default)) (uuid "1402245a-1e89-48ad-a384-de151f3a212e"))
+(label "SCL" (at 104.14 66.04 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "5a43b402-53f5-4e62-9570-0d5fb74b6099"))
+(wire (pts (xy 106.68 68.58) (xy 104.14 68.58)) (stroke (width 0) (type default)) (uuid "d542c41b-d726-4ae5-bdb2-4b36141e7ff9"))
+(label "SDA" (at 104.14 68.58 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "75a9fe00-fea7-4752-8658-1f4752cd3ab5"))
+(wire (pts (xy 106.68 71.12) (xy 104.14 71.12)) (stroke (width 0) (type default)) (uuid "bf25635c-5401-4d23-a47c-758451029914"))
+(symbol (lib_id "power:GND") (at 104.14 71.12 270) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "4862d74e-9986-5cac-aa30-20da21644b15")
+  (property "Reference" "#PWR007" (at 104.14 71.12 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "GND" (at 100.54 71.12 90) (effects (font (size 1.27 1.27)) (justify right)))
+  (property "Footprint" "" (at 104.14 71.12 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 104.14 71.12 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 104.14 71.12 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "dcd51968-1405-4086-8c16-1921c4fc725b"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR007") (unit 1)))))
+(wire (pts (xy 106.68 76.20) (xy 104.14 76.20)) (stroke (width 0) (type default)) (uuid "5ccf1ca4-d382-4127-b594-33c61f5a1780"))
+(symbol (lib_id "power:GND") (at 104.14 76.20 270) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "0a97ee25-8f4f-55a0-94b0-ffeaf3cce8c7")
+  (property "Reference" "#PWR008" (at 104.14 76.20 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "GND" (at 100.54 76.20 90) (effects (font (size 1.27 1.27)) (justify right)))
+  (property "Footprint" "" (at 104.14 76.20 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 104.14 76.20 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 104.14 76.20 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "97ba6d00-3e90-418f-acc0-4f99162ae0f2"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR008") (unit 1)))))
+(wire (pts (xy 147.32 55.88) (xy 149.86 55.88)) (stroke (width 0) (type default)) (uuid "7432b7c5-29c1-4c66-8f72-818c064d8c2c"))
+(label "IMU_INT1" (at 149.86 55.88 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "e3cd77bb-95e7-4855-b783-8a1cfac78b1b"))
+(no_connect (at 147.32 58.42) (uuid "db291ee3-dd1c-49ce-802c-5ac676bf7ac6"))
+(wire (pts (xy 147.32 63.50) (xy 149.86 63.50)) (stroke (width 0) (type default)) (uuid "d49c81c3-0e4f-40d3-90b8-802d572a5863"))
+(symbol (lib_id "power:GND") (at 149.86 63.50 90) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "d77460e5-8298-55e7-8bac-329d39fa4a57")
+  (property "Reference" "#PWR009" (at 149.86 63.50 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "GND" (at 153.46 63.50 90) (effects (font (size 1.27 1.27)) (justify right)))
+  (property "Footprint" "" (at 149.86 63.50 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 149.86 63.50 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 149.86 63.50 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "a9e405c9-6c03-45b5-852d-3040496fb66f"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR009") (unit 1)))))
+(wire (pts (xy 147.32 66.04) (xy 149.86 66.04)) (stroke (width 0) (type default)) (uuid "37f7601e-319f-494a-9a66-c27c146712a5"))
+(symbol (lib_id "power:GND") (at 149.86 66.04 90) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "516295c6-023a-5ffa-9215-3b4160e6d89e")
+  (property "Reference" "#PWR010" (at 149.86 66.04 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "GND" (at 153.46 66.04 90) (effects (font (size 1.27 1.27)) (justify right)))
+  (property "Footprint" "" (at 149.86 66.04 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 149.86 66.04 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 149.86 66.04 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "1540b4fe-210a-46f2-8bb2-519831c1dfbc"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR010") (unit 1)))))
+(no_connect (at 147.32 71.12) (uuid "cb48154c-f1ce-49bf-aaf2-9d92a9ee4e40"))
+(no_connect (at 147.32 73.66) (uuid "6d499994-f349-4a0a-8704-c5a31e147d30"))
+(text "CS = 3V3 -> modo I2C.  SA0 = GND -> direccion 0x6A.\nSDx/SCx a GND (Qvar y hub analogico sin usar)." (exclude_from_sim no) (at 83.00 105.00 0) (effects (font (size 1.3 1.3)) (justify left bottom)) (uuid "718a0eb0-0138-47f0-9726-594eea62ddd4"))
+(rectangle (start 185.00 20.00) (end 280.00 115.00) (stroke (width 0.15) (type dash)) (fill (type none)) (uuid "0e2393d4-6fd5-4dca-af5c-ca6c822872cf"))
+(text "Barometro  ICP-20100  (I2C 0x63)" (exclude_from_sim no) (at 186.50 24.00 0) (effects (font (size 2.0 2.0) (bold yes)) (justify left bottom)) (uuid "8f2b1327-9631-4663-97fe-d55f11e27e21"))
+(symbol (lib_id "medio_dron:ICP-20100") (at 231.14 60.96 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "ee5e9e45-f382-5c75-8e05-82a0232ac606")
+  (property "Reference" "U2" (at 218.44 44.45 0) (effects (font (size 1.27 1.27)) (justify left)))
+  (property "Value" "ICP-20100" (at 218.44 46.99 0) (effects (font (size 1.27 1.27)) (justify left)))
+  (property "Footprint" "medio_dron:TDK_ICP-20100_LGA-10_2x2mm_P0.5mm" (at 231.14 60.96 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "https://invensense.tdk.com/wp-content/uploads/2021/11/DS-000416-ICP-20100-v1.4.pdf" (at 231.14 60.96 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "Barometro + temperatura, I2C/SPI/I3C, LGA-10L 2x2 mm" (at 231.14 60.96 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "MPN" "ICP-20100" (at 231.14 60.96 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "5" (uuid "028f2f03-f8d4-4648-ad87-19db1413d885"))
+  (pin "10" (uuid "f93c881b-c1ff-4dad-82d3-8632e78a7c4a"))
+  (pin "1" (uuid "c0e31953-92df-4f87-80ea-9ac8360db23a"))
+  (pin "2" (uuid "1d5092ce-2df8-4dbe-b473-6417d32e61ee"))
+  (pin "4" (uuid "8ce6ac25-f9d8-43b7-b164-14ebe24f9f61"))
+  (pin "6" (uuid "4c23a406-d5fe-4c8c-8ce6-9d9435b1f5ac"))
+  (pin "3" (uuid "ef2a37dd-859b-4755-8229-2b2f834f05bb"))
+  (pin "7" (uuid "8b749d23-e5e9-4cb2-9904-3998e285c891"))
+  (pin "8" (uuid "b1509bee-d4ea-4dd1-ae85-ebbcf5ab4684"))
+  (pin "9" (uuid "16acef11-fcbe-45f4-9df0-265f7a5c8d51"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "U2") (unit 1)))))
+(wire (pts (xy 215.90 50.80) (xy 213.36 50.80)) (stroke (width 0) (type default)) (uuid "8f8825a8-c590-4774-8fa2-dce61da18d26"))
+(symbol (lib_id "power:+3V3") (at 213.36 50.80 90) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "c63b07ce-417d-5f47-b243-c0a302b2d7ed")
+  (property "Reference" "#PWR011" (at 213.36 50.80 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "+3V3" (at 209.76 50.80 90) (effects (font (size 1.27 1.27)) (justify left)))
+  (property "Footprint" "" (at 213.36 50.80 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 213.36 50.80 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 213.36 50.80 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "abd4e875-4ccf-4a56-a47b-ed69a94bd102"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR011") (unit 1)))))
+(wire (pts (xy 215.90 53.34) (xy 213.36 53.34)) (stroke (width 0) (type default)) (uuid "423155a2-2992-4266-9e92-3d72e5eb823f"))
+(symbol (lib_id "power:+3V3") (at 213.36 53.34 90) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "29085373-7091-532e-8474-4ad385ffb36f")
+  (property "Reference" "#PWR012" (at 213.36 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "+3V3" (at 209.76 53.34 90) (effects (font (size 1.27 1.27)) (justify left)))
+  (property "Footprint" "" (at 213.36 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 213.36 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 213.36 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "2ef41dc2-522e-421e-9181-0e319bfdd016"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR012") (unit 1)))))
+(wire (pts (xy 215.90 58.42) (xy 213.36 58.42)) (stroke (width 0) (type default)) (uuid "c8e884bf-4b98-428a-981e-e879dfe19b65"))
+(symbol (lib_id "power:+3V3") (at 213.36 58.42 90) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "b1b34d4d-8180-5e37-a999-6aac13a5d0dd")
+  (property "Reference" "#PWR013" (at 213.36 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "+3V3" (at 209.76 58.42 90) (effects (font (size 1.27 1.27)) (justify left)))
+  (property "Footprint" "" (at 213.36 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 213.36 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 213.36 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "750fe374-899b-4307-a5e4-f8c1e7fc6637"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR013") (unit 1)))))
+(wire (pts (xy 215.90 60.96) (xy 213.36 60.96)) (stroke (width 0) (type default)) (uuid "8d496260-9f4c-49ed-811b-9c46a62dd310"))
+(label "SCL" (at 213.36 60.96 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "53e6c0ca-0352-4748-828d-06ee16272b56"))
+(wire (pts (xy 215.90 63.50) (xy 213.36 63.50)) (stroke (width 0) (type default)) (uuid "98f5c063-644b-492c-8d7c-932d245af083"))
+(label "SDA" (at 213.36 63.50 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "8fddd1f9-8f0d-427f-b761-3c28829d6716"))
+(wire (pts (xy 215.90 66.04) (xy 213.36 66.04)) (stroke (width 0) (type default)) (uuid "ebbb58ef-cdef-488d-a43a-b1ab055696b1"))
+(symbol (lib_id "power:GND") (at 213.36 66.04 270) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "2c1d854e-693d-57bd-9bbb-af1d1c91a67e")
+  (property "Reference" "#PWR014" (at 213.36 66.04 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "GND" (at 209.76 66.04 90) (effects (font (size 1.27 1.27)) (justify right)))
+  (property "Footprint" "" (at 213.36 66.04 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 213.36 66.04 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 213.36 66.04 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "d6e14bb5-5e63-4037-8421-c91323c9d610"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR014") (unit 1)))))
+(wire (pts (xy 215.90 71.12) (xy 213.36 71.12)) (stroke (width 0) (type default)) (uuid "dd78d5e3-e871-43ba-9a3c-e2a9b68cbbe5"))
+(symbol (lib_id "power:GND") (at 213.36 71.12 270) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "795b027e-05b6-5ac9-97a2-98161bb9a75c")
+  (property "Reference" "#PWR015" (at 213.36 71.12 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "GND" (at 209.76 71.12 90) (effects (font (size 1.27 1.27)) (justify right)))
+  (property "Footprint" "" (at 213.36 71.12 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 213.36 71.12 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 213.36 71.12 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "33d51976-1a0b-444b-b682-acf823844c4d"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR015") (unit 1)))))
+(no_connect (at 246.38 50.80) (uuid "04bb5095-8aa8-4d3a-a837-3229e8d761ad"))
+(wire (pts (xy 246.38 55.88) (xy 248.92 55.88)) (stroke (width 0) (type default)) (uuid "8dd9f465-e0cd-4b80-aabd-0835d9656fcf"))
+(symbol (lib_id "power:GND") (at 248.92 55.88 90) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "746770b5-40c1-54dd-a106-890cff33918b")
+  (property "Reference" "#PWR016" (at 248.92 55.88 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "GND" (at 252.52 55.88 90) (effects (font (size 1.27 1.27)) (justify right)))
+  (property "Footprint" "" (at 248.92 55.88 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 248.92 55.88 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 248.92 55.88 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "daaa0fc3-fc33-4d19-8594-4129be45b0d9"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR016") (unit 1)))))
+(wire (pts (xy 246.38 58.42) (xy 248.92 58.42)) (stroke (width 0) (type default)) (uuid "a16210dc-e4ce-4796-9bc7-7945538cef0d"))
+(symbol (lib_id "power:GND") (at 248.92 58.42 90) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "8a5434f2-fd78-579f-83a0-5b5db2a993ab")
+  (property "Reference" "#PWR017" (at 248.92 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "GND" (at 252.52 58.42 90) (effects (font (size 1.27 1.27)) (justify right)))
+  (property "Footprint" "" (at 248.92 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 248.92 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 248.92 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "9678c7a9-3f02-4479-a613-56de8240e228"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR017") (unit 1)))))
+(text "CSB = 3V3 -> modo I2C.  AD0 = GND -> direccion 0x63.\nVDD = VDDIO = 3.3 V." (exclude_from_sim no) (at 188.00 105.00 0) (effects (font (size 1.3 1.3)) (justify left bottom)) (uuid "cdc9d062-7cef-4ed1-82e0-c9ad7e5d098a"))
+(rectangle (start 15.00 120.00) (end 170.00 190.00) (stroke (width 0.15) (type dash)) (fill (type none)) (uuid "1f12815d-a37f-433a-a054-f1c91204fe8a"))
+(text "Desacoplo (cada capacitor pegado a su pin)" (exclude_from_sim no) (at 16.50 124.00 0) (effects (font (size 2.0 2.0) (bold yes)) (justify left bottom)) (uuid "7d12250e-06be-4052-8671-4e3a3fef8e84"))
+(symbol (lib_id "Device:C") (at 30.48 154.94 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "277b43a8-8006-5954-a5c1-131577e78df0")
+  (property "Reference" "C1" (at 31.12 152.40 0) (effects (font (size 1.27 1.27)) (justify left)))
+  (property "Value" "100n" (at 31.12 157.48 0) (effects (font (size 1.27 1.27)) (justify left)))
+  (property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 30.48 154.94 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "~" (at 30.48 154.94 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "Unpolarized capacitor" (at 30.48 154.94 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "b74af852-358d-4c31-8c89-24c62c107d79"))
+  (pin "2" (uuid "88ea5c41-f57a-4b2d-8a9c-b3d6f456438f"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "C1") (unit 1)))))
+(wire (pts (xy 30.48 151.13) (xy 30.48 148.59)) (stroke (width 0) (type default)) (uuid "32fe3e4a-bd08-41ab-adde-1710970894fe"))
+(symbol (lib_id "power:+3V3") (at 30.48 148.59 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "5e45d359-d562-5afb-a241-c8a926c4f625")
+  (property "Reference" "#PWR018" (at 30.48 148.59 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "+3V3" (at 30.48 143.99 0) (effects (font (size 1.27 1.27))))
+  (property "Footprint" "" (at 30.48 148.59 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 30.48 148.59 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 30.48 148.59 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "cfe685d9-2a85-4e37-838d-6c8f101a85b5"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR018") (unit 1)))))
+(wire (pts (xy 30.48 158.75) (xy 30.48 161.29)) (stroke (width 0) (type default)) (uuid "81073f17-20f9-4043-af74-e15ffc5f841c"))
+(symbol (lib_id "power:GND") (at 30.48 161.29 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "109a8638-d526-51ac-9131-f071fe24f563")
+  (property "Reference" "#PWR019" (at 30.48 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "GND" (at 30.48 165.89 0) (effects (font (size 1.27 1.27))))
+  (property "Footprint" "" (at 30.48 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 30.48 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 30.48 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "d6c4eb9c-654e-4cd7-90fe-9f37edd7221f"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR019") (unit 1)))))
+(text "U1 VDD" (exclude_from_sim no) (at 24.00 175.00 0) (effects (font (size 1.2 1.2)) (justify left bottom)) (uuid "46832cd9-a474-484d-961d-a9c14e6669d5"))
+(symbol (lib_id "Device:C") (at 58.42 154.94 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "b931b0a9-0e5c-5054-b35e-60c5be7447f8")
+  (property "Reference" "C2" (at 59.05 152.40 0) (effects (font (size 1.27 1.27)) (justify left)))
+  (property "Value" "100n" (at 59.05 157.48 0) (effects (font (size 1.27 1.27)) (justify left)))
+  (property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 58.42 154.94 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "~" (at 58.42 154.94 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "Unpolarized capacitor" (at 58.42 154.94 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "ed7b678e-1dac-4ea6-859f-9c210bd5bc87"))
+  (pin "2" (uuid "3fc7b93c-f319-402b-bb15-86d775fcbb57"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "C2") (unit 1)))))
+(wire (pts (xy 58.42 151.13) (xy 58.42 148.59)) (stroke (width 0) (type default)) (uuid "8e2516a7-3602-464b-a64a-ceac153da935"))
+(symbol (lib_id "power:+3V3") (at 58.42 148.59 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "c2a7d119-1c16-5e72-8e15-8faea0f1e23b")
+  (property "Reference" "#PWR020" (at 58.42 148.59 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "+3V3" (at 58.42 143.99 0) (effects (font (size 1.27 1.27))))
+  (property "Footprint" "" (at 58.42 148.59 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 58.42 148.59 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 58.42 148.59 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "cb5f4413-0514-4374-b6ef-f5cf8d7d2d11"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR020") (unit 1)))))
+(wire (pts (xy 58.42 158.75) (xy 58.42 161.29)) (stroke (width 0) (type default)) (uuid "77d0338c-879a-41a4-afe3-837053f4697e"))
+(symbol (lib_id "power:GND") (at 58.42 161.29 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "efea0394-7aa9-53d9-bff2-a482932a3331")
+  (property "Reference" "#PWR021" (at 58.42 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "GND" (at 58.42 165.89 0) (effects (font (size 1.27 1.27))))
+  (property "Footprint" "" (at 58.42 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 58.42 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 58.42 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "96a1127f-ae64-4264-9da5-2b587938bc43"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR021") (unit 1)))))
+(text "U1 VDD_IO" (exclude_from_sim no) (at 52.00 175.00 0) (effects (font (size 1.2 1.2)) (justify left bottom)) (uuid "a79cb407-a90a-46ff-881a-7e10f61a26bd"))
+(symbol (lib_id "Device:C") (at 86.36 154.94 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "696500d6-2000-5c0c-9a9d-d54a7b76baf6")
+  (property "Reference" "C3" (at 87.00 152.40 0) (effects (font (size 1.27 1.27)) (justify left)))
+  (property "Value" "100n" (at 87.00 157.48 0) (effects (font (size 1.27 1.27)) (justify left)))
+  (property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 86.36 154.94 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "~" (at 86.36 154.94 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "Unpolarized capacitor" (at 86.36 154.94 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "ca046f6c-cd21-42ca-affc-d5adde8e7e31"))
+  (pin "2" (uuid "c027425c-648b-4ff4-9734-9661ed6c3894"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "C3") (unit 1)))))
+(wire (pts (xy 86.36 151.13) (xy 86.36 148.59)) (stroke (width 0) (type default)) (uuid "58cd7e70-ac84-48b4-96c1-2a77ac435143"))
+(symbol (lib_id "power:+3V3") (at 86.36 148.59 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "ca0baf9e-8a4b-521b-ade2-8d1b29d8a58c")
+  (property "Reference" "#PWR022" (at 86.36 148.59 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "+3V3" (at 86.36 143.99 0) (effects (font (size 1.27 1.27))))
+  (property "Footprint" "" (at 86.36 148.59 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 86.36 148.59 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 86.36 148.59 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "13119a88-87da-4063-89c9-5bfe7309da48"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR022") (unit 1)))))
+(wire (pts (xy 86.36 158.75) (xy 86.36 161.29)) (stroke (width 0) (type default)) (uuid "2049c313-8dee-4396-b8e8-a5b79a339c36"))
+(symbol (lib_id "power:GND") (at 86.36 161.29 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "f4792eee-2809-5d82-98f7-f7851de9f89d")
+  (property "Reference" "#PWR023" (at 86.36 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "GND" (at 86.36 165.89 0) (effects (font (size 1.27 1.27))))
+  (property "Footprint" "" (at 86.36 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 86.36 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 86.36 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "d55e5d93-9bed-4308-990d-661920524b06"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR023") (unit 1)))))
+(text "U2 VDD" (exclude_from_sim no) (at 80.00 175.00 0) (effects (font (size 1.2 1.2)) (justify left bottom)) (uuid "5c994e84-1bf7-49ea-b417-a2c7a1f94901"))
+(symbol (lib_id "Device:C") (at 114.30 154.94 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "e3d1526c-522a-5e55-9cb2-fb5d511b3105")
+  (property "Reference" "C4" (at 114.94 152.40 0) (effects (font (size 1.27 1.27)) (justify left)))
+  (property "Value" "100n" (at 114.94 157.48 0) (effects (font (size 1.27 1.27)) (justify left)))
+  (property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 114.30 154.94 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "~" (at 114.30 154.94 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "Unpolarized capacitor" (at 114.30 154.94 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "0a14d795-b49f-44a0-adb5-a9c07a4b3ed9"))
+  (pin "2" (uuid "5e560a48-6c56-4404-a986-4c9957c81ed7"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "C4") (unit 1)))))
+(wire (pts (xy 114.30 151.13) (xy 114.30 148.59)) (stroke (width 0) (type default)) (uuid "fa057deb-d382-47e7-a29d-20188aceb8fc"))
+(symbol (lib_id "power:+3V3") (at 114.30 148.59 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "b41a7abc-eaf8-5e80-a9f7-a3e0504556c4")
+  (property "Reference" "#PWR024" (at 114.30 148.59 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "+3V3" (at 114.30 143.99 0) (effects (font (size 1.27 1.27))))
+  (property "Footprint" "" (at 114.30 148.59 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 114.30 148.59 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 114.30 148.59 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "8132b371-892a-4c03-baa5-522528c5ae85"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR024") (unit 1)))))
+(wire (pts (xy 114.30 158.75) (xy 114.30 161.29)) (stroke (width 0) (type default)) (uuid "c34cc46b-1973-4d78-b4ec-272574d2ac76"))
+(symbol (lib_id "power:GND") (at 114.30 161.29 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "349c6ede-3aac-5e47-acc8-e53309166ed3")
+  (property "Reference" "#PWR025" (at 114.30 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "GND" (at 114.30 165.89 0) (effects (font (size 1.27 1.27))))
+  (property "Footprint" "" (at 114.30 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 114.30 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 114.30 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "52428acc-de80-4bd8-ad5b-0a6bb6b7fe4c"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR025") (unit 1)))))
+(text "U2 VDDIO" (exclude_from_sim no) (at 108.00 175.00 0) (effects (font (size 1.2 1.2)) (justify left bottom)) (uuid "8aa4012c-ac33-476b-8b69-e9c92ed1ff5e"))
+(symbol (lib_id "Device:C") (at 142.24 154.94 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "48103a45-b913-54fc-9094-98d24840eb0b")
+  (property "Reference" "C5" (at 142.88 152.40 0) (effects (font (size 1.27 1.27)) (justify left)))
+  (property "Value" "2.2u" (at 142.88 157.48 0) (effects (font (size 1.27 1.27)) (justify left)))
+  (property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 142.24 154.94 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "~" (at 142.24 154.94 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "Unpolarized capacitor" (at 142.24 154.94 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "3f688b9e-1ee3-426e-968a-254c2e5bee6e"))
+  (pin "2" (uuid "0bc85e37-9b32-49b9-979e-49c72a942515"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "C5") (unit 1)))))
+(wire (pts (xy 142.24 151.13) (xy 142.24 148.59)) (stroke (width 0) (type default)) (uuid "2c8e6ac5-f799-4905-9922-f64da2fb7afe"))
+(symbol (lib_id "power:+3V3") (at 142.24 148.59 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "0f81e88c-2566-56e6-9abe-58eddb92c090")
+  (property "Reference" "#PWR026" (at 142.24 148.59 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "+3V3" (at 142.24 143.99 0) (effects (font (size 1.27 1.27))))
+  (property "Footprint" "" (at 142.24 148.59 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 142.24 148.59 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 142.24 148.59 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "8fa45466-845c-43e6-a456-8f2d440ab571"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR026") (unit 1)))))
+(wire (pts (xy 142.24 158.75) (xy 142.24 161.29)) (stroke (width 0) (type default)) (uuid "424c1c99-ebc4-4cb0-9b17-375eede7dca5"))
+(symbol (lib_id "power:GND") (at 142.24 161.29 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "a642672e-d297-526a-8ce3-fe9607abcf12")
+  (property "Reference" "#PWR027" (at 142.24 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "GND" (at 142.24 165.89 0) (effects (font (size 1.27 1.27))))
+  (property "Footprint" "" (at 142.24 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 142.24 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 142.24 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "aa2e4fd4-6c49-4dd4-a09a-748f2ee0a2fa"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR027") (unit 1)))))
+(text "entrada" (exclude_from_sim no) (at 136.00 175.00 0) (effects (font (size 1.2 1.2)) (justify left bottom)) (uuid "af1c6d4c-8f18-42dc-82ea-90916dc5c913"))
+(rectangle (start 175.00 120.00) (end 280.00 163.00) (stroke (width 0.15) (type dash)) (fill (type none)) (uuid "ae26e6d3-a339-405a-a530-e5520143d5af"))
+(text "Puntos de prueba y banderas" (exclude_from_sim no) (at 176.50 124.00 0) (effects (font (size 2.0 2.0) (bold yes)) (justify left bottom)) (uuid "9f577973-fc21-4236-bf25-077d834b6c50"))
+(symbol (lib_id "Connector:TestPoint") (at 187.96 134.62 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "c7e30b95-0fff-50b8-ba4c-4f1a8f0514d0")
+  (property "Reference" "TP1" (at 187.96 127.76 0) (effects (font (size 1.27 1.27))))
+  (property "Value" "INT1" (at 187.96 129.54 0) (effects (font (size 1.27 1.27))))
+  (property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm" (at 187.96 134.62 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "~" (at 187.96 134.62 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "test point" (at 187.96 134.62 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "7d343e9b-79e3-4aab-91bf-e94c7f77e16b"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "TP1") (unit 1)))))
+(wire (pts (xy 187.96 134.62) (xy 187.96 137.16)) (stroke (width 0) (type default)) (uuid "d3bcae02-e083-42e7-80bc-b1b8dfa0e664"))
+(label "IMU_INT1" (at 187.96 137.16 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "a0216119-51c1-4f8c-9597-77fdf5d1b0bf"))
+(symbol (lib_id "power:PWR_FLAG") (at 243.84 134.62 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "bb4966f6-2060-55dd-a407-0564bf08ec79")
+  (property "Reference" "#FLG028" (at 243.84 134.62 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "PWR_FLAG" (at 243.84 130.12 0) (effects (font (size 1.27 1.27))))
+  (property "Footprint" "" (at 243.84 134.62 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 243.84 134.62 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 243.84 134.62 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "b45092ab-e56d-4c10-9e98-81624c659de7"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#FLG028") (unit 1)))))
+(wire (pts (xy 243.84 134.62) (xy 243.84 137.16)) (stroke (width 0) (type default)) (uuid "ac90d719-ce47-4f00-a458-277235296022"))
+(symbol (lib_id "power:+3V3") (at 243.84 137.16 180) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "d0745731-0dec-5c45-9b44-859e0bcb1ff3")
+  (property "Reference" "#PWR029" (at 243.84 137.16 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "+3V3" (at 243.84 141.76 0) (effects (font (size 1.27 1.27))))
+  (property "Footprint" "" (at 243.84 137.16 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 243.84 137.16 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 243.84 137.16 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "a077cb8d-6584-43b3-901e-75c0099cf85d"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR029") (unit 1)))))
+(symbol (lib_id "power:PWR_FLAG") (at 264.16 134.62 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "d07667d4-902a-53f8-bdc6-01a104a57fbb")
+  (property "Reference" "#FLG030" (at 264.16 134.62 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "PWR_FLAG" (at 264.16 130.12 0) (effects (font (size 1.27 1.27))))
+  (property "Footprint" "" (at 264.16 134.62 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 264.16 134.62 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 264.16 134.62 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "0e1e35bd-0e46-40ef-8ea3-cc9fffe655c8"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#FLG030") (unit 1)))))
+(wire (pts (xy 264.16 134.62) (xy 264.16 137.16)) (stroke (width 0) (type default)) (uuid "32f9dcc9-b815-45e2-960e-c19d41c16e35"))
+(symbol (lib_id "power:GND") (at 264.16 137.16 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "1b76b22e-d871-5023-a500-47dad55059b1")
+  (property "Reference" "#PWR031" (at 264.16 137.16 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "GND" (at 264.16 141.76 0) (effects (font (size 1.27 1.27))))
+  (property "Footprint" "" (at 264.16 137.16 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "" (at 264.16 137.16 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "" (at 264.16 137.16 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (pin "1" (uuid "58caabe5-2f1a-4898-9a69-c55965fc3903"))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "#PWR031") (unit 1)))))
+(symbol (lib_id "Mechanical:MountingHole") (at 20.32 180.34 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "3c109967-bc94-56c9-87cf-c8811e104028")
+  (property "Reference" "H1" (at 20.32 175.26 0) (effects (font (size 1.27 1.27))))
+  (property "Value" "M2" (at 20.32 177.16 0) (effects (font (size 1.27 1.27))))
+  (property "Footprint" "MountingHole:MountingHole_2.2mm_M2" (at 20.32 180.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "~" (at 20.32 180.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "Mounting Hole without connection" (at 20.32 180.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "H1") (unit 1)))))
+(symbol (lib_id "Mechanical:MountingHole") (at 35.56 180.34 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "7050f85c-f036-5e2e-92c7-0ada7046adea")
+  (property "Reference" "H2" (at 35.56 175.26 0) (effects (font (size 1.27 1.27))))
+  (property "Value" "M2" (at 35.56 177.16 0) (effects (font (size 1.27 1.27))))
+  (property "Footprint" "MountingHole:MountingHole_2.2mm_M2" (at 35.56 180.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "~" (at 35.56 180.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "Mounting Hole without connection" (at 35.56 180.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (instances (project "placa-sensores" (path "/64672d70-c7c9-5e10-a19d-8468a1cc7383" (reference "H2") (unit 1)))))
+(text "Va en el brazo que se inclina, cerca del eje del pivote." (exclude_from_sim no) (at 18.00 112.00 0) (effects (font (size 1.3 1.3)) (justify left bottom)) (uuid "ca009292-8511-4067-a7de-bb9c24bc1843"))
+(text "Qwiic no lleva linea INT: la IMU se lee por\nsondeo/FIFO. TP1 queda por si se quiere\ncablear la interrupcion despues." (exclude_from_sim no) (at 178.00 160.00 0) (effects (font (size 1.2 1.2)) (justify left bottom)) (uuid "8d87ec8b-41e8-4780-976b-e77185ab3e8b"))
+(sheet_instances (path "/" (page "1")))
+(embedded_fonts no))
