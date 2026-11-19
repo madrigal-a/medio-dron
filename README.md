@@ -9,7 +9,7 @@ poder rotar de forma controlada.
 |---|---|---|
 | [`v0-prueba-motores/`](v0-prueba-motores) | ✅ Pruebas | Test de motores EX1103: banco de empuje impreso en 3D y control manual de 2 motores desde una página web. Sirve como base y referencia. |
 | [`hardware/`](hardware) | 🚧 En diseño | PCBs en KiCad 9: placa principal (ESP32-C3) y placa de sensores (IMU + barómetro). |
-| _próximamente_ | 🚧 | Proyecto completo del medio dron con control. |
+| [`v1-control/`](v1-control) | 🧪 Por probar | Control de altura y roll en el riel: firmware ESP32-C3 (BNO055 + ToF + DShot), PID por modelo (ζ, ωn) o manual, página de telemetría por USB. [Lista de comandos](v1-control/COMANDOS.md). |
 
 ## Hardware actual
 - Motores Happymodel **EX1103 11000KV** (1S–2S) con ESC BLHeli_S / Bluejay por **DShot300**

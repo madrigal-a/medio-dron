@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Medio dron · control</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{--bg:#111315;--card:#1a1d21;--line:#2a2f35;--tx:#e7e9ec;--mut:#9aa1aa;--acc:#3b8ef0;--ok:#2fb36d;--warn:#e5a23a;--bad:#e5534b}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.45 system-ui,Segoe UI,Arial,sans-serif}
+  header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:5}
+  h1{font-size:16px;margin:0 8px 0 0;font-weight:600}
+  .pill{padding:3px 9px;border-radius:99px;background:#252a30;color:var(--mut);font-size:12px}
+  .pill.ok{background:#173d29;color:#7fe0a8}.pill.bad{background:#47201e;color:#ff9c95}.pill.warn{background:#46361a;color:#ffd08a}
+  main{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(330px,1fr);gap:12px;padding:12px}
+  @media(max-width:1000px){main{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:12px}
+  .card h2{font-size:13px;margin:0 0 10px;color:var(--mut);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+  button{background:#252a30;color:var(--tx);border:1px solid #39404a;border-radius:7px;padding:7px 12px;font:inherit;cursor:pointer}
+  button:hover{border-color:#5a6470}
+  button.sel{background:var(--acc);border-color:var(--acc);color:#fff}
+  button.big{padding:10px 16px;font-weight:600}
+  button.red{background:#7a1f1b;border-color:#a7322c}button.green{background:#1d5a37;border-color:#2b7d4e}button.amber{background:#6b4a12;border-color:#93661c}
+  .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0}
+  label{color:var(--mut);font-size:13px}
+  input[type=number],input[type=text]{background:#111417;color:var(--tx);border:1px solid #39404a;border-radius:6px;padding:5px 7px;font:inherit;width:96px}
+  input[type=range]{flex:1;min-width:140px}
+  .val{min-width:58px;text-align:right;font-variant-numeric:tabular-nums}
+  table{border-collapse:collapse;width:100%}
+  td{padding:4px 4px;vertical-align:middle}
+  td:first-child{color:var(--mut);font-size:13px;white-space:nowrap}
+  .unit{color:var(--mut);font-size:12px}
+  .gains{font-variant-numeric:tabular-nums;font-size:13px}
+  .gains b{color:#9ec5ff;font-weight:600}
+  canvas{width:100%;height:170px;display:block;background:#121417;border-radius:6px}
+  .legend{display:flex;gap:14px;font-size:12px;color:var(--mut);margin:4px 0 2px}
+  .legend i{display:inline-block;width:12px;height:3px;margin-right:5px;vertical-align:middle}
+  #log{height:180px;overflow:auto;background:#0d0f11;border-radius:6px;padding:6px 8px;font:12px/1.4 ui-monospace,Consolas,monospace;white-space:pre-wrap}
+  .seg button{border-radius:0;margin:0}.seg button:first-child{border-radius:7px 0 0 7px}.seg button:last-child{border-radius:0 7px 7px 0}
+  .seg{display:inline-flex}
+  .hint{color:var(--mut);font-size:12px}
+  .warnbox{background:#46361a;color:#ffd08a;padding:8px 10px;border-radius:8px}
+  .hide{display:none}
+</style>
+</head>
+<body>
+<header>
+  <h1>Medio dron · control</h1>
+  <button id="btnCon" class="big">Conectar ESP32</button>
+  <span id="stCon" class="pill">desconectado</span>
+  <span id="stArm" class="pill">desarmado</span>
+  <span id="stModo" class="pill">modo —</span>
+  <span id="stImu" class="pill">IMU</span>
+  <span id="stTof" class="pill">ToF</span>
+  <span id="stBat" class="pill">— V</span>
+  <span style="flex:1"></span>
+  <button id="btnArm" class="big green">Armar</button>
+  <button id="btnAter" class="big amber">Aterrizar</button>
+  <button id="btnDes" class="big">Desarmar</button>
+  <button id="btnParo" class="big red" title="Espacio o Esc">PARO</button>
+</header>
+
+<div id="noSerial" class="warnbox hide" style="margin:12px">Este navegador no soporta Web Serial. Abre este archivo con Google Chrome o Microsoft Edge.</div>
+
+<main>
+<section>
+  <div class="card">
+    <h2>Modo y mando</h2>
+    <div class="row">
+      <div class="seg" id="segModo">
+        <button data-m="manual">Manual</button><button data-m="roll">Roll (gas fijo)</button><button data-m="auto">Auto (altura + roll)</button>
+      </div>
+      <span class="hint" id="modoHint"></span>
+    </div>
+    <div class="row" id="rowGas"><label style="width:110px">Gas (ambos / base)</label><input type="range" id="gas" min="0" max="70" step="0.5" value="0"><span class="val" id="gasV">0 %</span>
+      <button data-g="-1">−1</button><button data-g="1">+1</button><button data-g="50">50 %</button><button data-g="60">60 %</button></div>
+    <div class="row" id="rowMot"><label style="width:110px">Motor 1 / 2</label>
+      <input type="range" id="m1" min="0" max="70" step="0.5" value="0"><span class="val" id="m1V">0</span>
+      <input type="range" id="m2" min="0" max="70" step="0.5" value="0"><span class="val" id="m2V">0</span></div>
+    <div class="row" id="rowR"><label style="width:110px">Roll deseado</label><input type="range" id="rsp" min="-20" max="20" step="1" value="0"><span class="val" id="rspV">0°</span><button id="r0">0°</button></div>
+    <div class="row" id="rowZ"><label style="width:110px">Altura deseada</label><input type="range" id="zsp" min="0" max="30" step="0.5" value="0"><span class="val" id="zspV">0 cm</span><button data-z="0">0</button><button data-z="10">10</button><button data-z="15">15</button><button data-z="20">20</button></div>
+  </div>
+
+  <div class="card">
+    <h2>Roll</h2>
+    <div class="legend"><span><i style="background:#3b8ef0"></i>roll (°)</span><span><i style="background:#e5a23a"></i>deseado</span><span><i style="background:#8a5cd6"></i>giro (°/s ÷10)</span></div>
+    <canvas id="cRoll"></canvas>
+  </div>
+  <div class="card">
+    <h2>Altura</h2>
+    <div class="legend"><span><i style="background:#3b8ef0"></i>estimada (cm)</span><span><i style="background:#e5a23a"></i>deseada</span><span><i style="background:#6c7480"></i>ToF crudo</span></div>
+    <canvas id="cAlt"></canvas>
+  </div>
+  <div class="card">
+    <h2>Motores</h2>
+    <div class="legend"><span><i style="background:#2fb36d"></i>motor 1 (%)</span><span><i style="background:#e5534b"></i>motor 2 (%)</span></div>
+    <canvas id="cMot"></canvas>
+    <div class="row"><span class="hint" id="numeros"></span><span style="flex:1"></span>
+      <button id="btnRec">Grabar CSV</button><span class="hint" id="recInfo"></span></div>
+  </div>
+</section>
+
+<section>
+  <div class="card">
+    <h2>Modelo físico (método A)</h2>
+    <table>
+      <tr><td>masa (todo lo que se mueve)</td><td><input type="number" step="0.001" id="p_masa"> <span class="unit">kg</span></td></tr>
+      <tr><td>J del brazo</td><td><input type="number" step="0.000001" id="p_J"> <span class="unit">kg·m²</span></td></tr>
+      <tr><td>L pivote → motor</td><td><input type="number" step="0.001" id="p_L"> <span class="unit">m</span></td></tr>
+      <tr><td>u0 throttle de hover</td><td><input type="number" step="0.5" id="p_u0"> <span class="unit">%</span></td></tr>
+      <tr><td>v0 batería en hover</td><td><input type="number" step="0.01" id="p_v0"> <span class="unit">V (0 = sin compensar)</span></td></tr>
+    </table>
+    <div class="row"><button id="btnU0set">Usar gas y batería actuales como hover (u0set)</button></div>
+    <details><summary class="hint">Calculadora de J (péndulo)</summary>
+      <div class="row"><label>m₀</label><input type="number" id="jm0" value="10" step="0.1"><span class="unit">g</span>
+        <label>r</label><input type="number" id="jr" value="2.5" step="0.1"><span class="unit">cm</span>
+        <label>10 oscilaciones</label><input type="number" id="jt" value="" step="0.01"><span class="unit">s</span></div>
+      <div class="row"><span id="jres" class="gains">J = —</span><button id="jusar">Usar este J</button></div>
+      <div class="hint">J = m₀·g·r·T²/(4π²) − m₀·r², con T = tiempo/10</div>
+    </details>
+  </div>
+
+  <div class="card">
+    <h2>PID</h2>
+    <table>
+      <tr><td></td><td style="color:var(--mut)">Roll</td><td style="color:var(--mut)">Altura</td></tr>
+      <tr><td>Ganancias</td>
+        <td><div class="seg" data-pid="roll"><button data-f="auto">Modelo</button><button data-f="manual">Manual</button></div></td>
+        <td><div class="seg" data-pid="alt"><button data-f="auto">Modelo</button><button data-f="manual">Manual</button></div></td></tr>
+      <tr><td>ζ amortiguamiento</td><td><input type="number" step="0.05" id="p_zeta_roll"></td><td><input type="number" step="0.05" id="p_zeta_alt"></td></tr>
+      <tr><td>ωn rapidez (rad/s)</td><td><input type="number" step="0.5" id="p_wn_roll"></td><td><input type="number" step="0.5" id="p_wn_alt"></td></tr>
+      <tr><td>Ki = Kp·ωn·factor</td><td><input type="number" step="0.01" id="p_kifac_roll"></td><td><input type="number" step="0.01" id="p_kifac_alt"></td></tr>
+      <tr><td>Kp manual</td><td><input type="number" step="any" id="p_kp_roll"></td><td><input type="number" step="any" id="p_kp_alt"></td></tr>
+      <tr><td>Ki manual</td><td><input type="number" step="any" id="p_ki_roll"></td><td><input type="number" step="any" id="p_ki_alt"></td></tr>
+      <tr><td>Kd manual</td><td><input type="number" step="any" id="p_kd_roll"></td><td><input type="number" step="any" id="p_kd_alt"></td></tr>
+      <tr><td></td><td><button data-copiar="roll">Modelo → manual</button></td><td><button data-copiar="alt">Modelo → manual</button></td></tr>
+    </table>
+    <div class="gains" style="margin-top:8px">
+      <div>Roll activas: <b id="g_roll">—</b></div><div class="hint">modelo: <span id="gm_roll">—</span></div>
+      <div style="margin-top:4px">Altura activas: <b id="g_alt">—</b></div><div class="hint">modelo: <span id="gm_alt">—</span></div>
+      <div class="hint" style="margin-top:4px">Unidades: roll en N/rad, N/(rad·s), N·s/rad · altura en N/m, N/(m·s), N·s/m</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Límites y seguridad</h2>
+    <table>
+      <tr><td>Gas máximo</td><td><input type="number" step="1" id="p_max"> <span class="unit">%</span></td></tr>
+      <tr><td>Gas mínimo con control</td><td><input type="number" step="0.5" id="p_gasmin"> <span class="unit">%</span></td></tr>
+      <tr><td>Ángulo máximo pedido</td><td><input type="number" step="1" id="p_limang"> <span class="unit">°</span></td></tr>
+      <tr><td>Ángulo de aterrizaje</td><td><input type="number" step="1" id="p_corte"> <span class="unit">°</span></td></tr>
+      <tr><td>Batería mínima</td><td><input type="number" step="0.1" id="p_vmin"> <span class="unit">V</span></td></tr>
+      <tr><td>Duración aterrizaje</td><td><input type="number" step="0.1" id="p_tater"> <span class="unit">s</span></td></tr>
+      <tr><td>Rapidez de altura</td><td><input type="number" step="1" id="p_zvel"> <span class="unit">cm/s</span></td></tr>
+      <tr><td>Factor divisor batería</td><td><input type="number" step="0.001" id="p_vdiv"></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Sensores</h2>
+    <div class="row"><button id="bImuAuto">Detectar ejes del IMU</button><button id="bCero">Roll = 0 aquí</button><button id="bZcero">Altura = 0 aquí</button><button id="bImu">Leer IMU</button></div>
+    <div class="hint" id="imuInfo">—</div>
+    <div class="row"><button id="bGuardar" class="green">Guardar en la ESP32</button><button id="bVer">Releer parámetros</button></div>
+  </div>
+
+  <div class="card">
+    <h2>Consola</h2>
+    <div id="log"></div>
+    <div class="row"><input type="text" id="cmd" style="flex:1;width:auto" placeholder="ayuda"><button id="bSend">Enviar</button></div>
+  </div>
+</section>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+const S = {port:null, writer:null, reader:null, conectado:false};
+const MODOS = ['manual','roll','auto'];
+let est = {modo:0, armado:0, flags:0};
+
+// ---------- serial ----------
+async function conectar(){
+  if(S.conectado){ await desconectar(); return; }
+  try{
+    S.port = await navigator.serial.requestPort();
+    await S.port.open({baudRate:115200});
+    const enc = new TextEncoderStream(); enc.readable.pipeTo(S.port.writable); S.writer = enc.writable.getWriter();
+    const dec = new TextDecoderStream(); S.port.readable.pipeTo(dec.writable); S.reader = dec.readable.getReader();
+    S.conectado = true; $('btnCon').textContent='Desconectar';
+    pill('stCon','conectado','ok');
+    leerBucle();
+    setTimeout(()=>{ enviar('tel 50'); enviar('ver'); }, 400);
+  }catch(e){ log('ERR '+e.message); }
+}
+async function desconectar(){
+  try{ await enviar('tel 0'); }catch(e){}
+  S.conectado=false;
+  try{ await S.reader.cancel(); }catch(e){}
+  try{ await S.writer.close(); }catch(e){}
+  try{ await S.port.close(); }catch(e){}
+  $('btnCon').textContent='Conectar ESP32'; pill('stCon','desconectado','');
+}
+async function enviar(t){
+  if(!S.conectado) return;
+  await S.writer.write(t+'\n');
+  if(t!=='hb' && !t.startsWith('tel')) log('> '+t, '#7fa7d8');
+}
+async function leerBucle(){
+  let buf='';
+  while(S.conectado){
+    let r; try{ r = await S.reader.read(); }catch(e){ break; }
+    if(r.done) break;
+    buf += r.value;
+    let i; while((i=buf.indexOf('\n'))>=0){ const l=buf.slice(0,i).replace('\r',''); buf=buf.slice(i+1); linea(l); }
+  }
+  if(S.conectado){ S.conectado=false; pill('stCon','se perdió la conexión','bad'); $('btnCon').textContent='Conectar ESP32'; }
+}
+setInterval(()=>{ if(S.conectado) enviar('hb'); }, 250);
+
+// ---------- mensajes de la ESP32 ----------
+function linea(l){
+  if(l.startsWith('T,')){ tele(l.split(',')); return; }
+  const p = l.split(',');
+  if(p[0]==='P'){
+    const k=p[1], v=p.slice(2).join(',');
+    if(k==='pid_roll'||k==='pid_alt'){ segSel(document.querySelector(`[data-pid="${k.slice(4)}"]`), v); return; }
+    if(k==='imu'){ $('imuInfo').textContent='IMU: '+v; return; }
+    const el=$('p_'+k); if(el && document.activeElement!==el) el.value=v;
+    if(k==='max'){ ['gas','m1','m2'].forEach(id=>$(id).max=v); }
+    return;
+  }
+  if(p[0]==='G'){ $('g_'+p[1]).textContent=`Kp ${fmt(p[2])} · Ki ${fmt(p[3])} · Kd ${fmt(p[4])}`; return; }
+  if(p[0]==='GM'){ $('gm_'+p[1]).textContent=`Kp ${fmt(p[2])} · Ki ${fmt(p[3])} · Kd ${fmt(p[4])}`; return; }
+  if(p[0]==='M'){ const t=p.slice(1).join(','); log(t, t.startsWith('ERR')?'#ff9c95':(t.startsWith('PARO')||t.startsWith('ATERR')?'#ffd08a':'')); return; }
+  log(l,'#6c7480');
+}
+function fmt(x){ x=parseFloat(x); if(!isFinite(x)) return '—'; return Math.abs(x)>=100||Math.abs(x)<0.01&&x!==0 ? x.toExponential(2) : x.toPrecision(3); }
+
+// T,t,modo,armado,roll,gyro,rSp,z,v,zSp,zTof,u1,u2,vbat,flags
+const N=1000; const H={t:[],roll:[],rsp:[],gyro:[],z:[],zsp:[],ztof:[],u1:[],u2:[]};
+let rec=null;
+function tele(a){
+  const d={t:+a[1]/1000, modo:+a[2], arm:+a[3], roll:+a[4], gyro:+a[5], rsp:+a[6], z:+a[7], v:+a[8], zsp:+a[9], ztof:+a[10], u1:+a[11], u2:+a[12], vbat:+a[13], flags:+a[14]};
+  for(const k in H){ H[k].push(k==='gyro'?d.gyro/10:d[k]); if(H[k].length>N) H[k].shift(); }
+  if(rec) rec.push(a.slice(1).join(','));
+  if(d.modo!==est.modo){ est.modo=d.modo; modoUI(); }
+  est.armado=d.arm; est.flags=d.flags;
+  pill('stArm', (d.flags&4)?'ATERRIZANDO':(d.arm?'ARMADO':'desarmado'), (d.flags&4)?'warn':(d.arm?'bad':''));
+  pill('stModo','modo '+MODOS[d.modo],'');
+  pill('stImu','IMU', (d.flags&1)?'ok':'bad'); pill('stTof','ToF', (d.flags&2)?'ok':'bad');
+  pill('stBat', d.vbat>1? d.vbat.toFixed(2)+' V':'sin VBAT', (d.flags&16)?'bad':(d.vbat>1?'ok':''));
+  $('numeros').textContent=`roll ${d.roll.toFixed(1)}° · giro ${d.gyro.toFixed(0)}°/s · z ${d.z.toFixed(1)} cm · v ${d.v.toFixed(1)} cm/s · M1 ${d.u1.toFixed(1)}% · M2 ${d.u2.toFixed(1)}%`;
+}
+
+// ---------- gráficas ----------
+function plot(id, series, ymin, ymax){
+  const c=$(id), dpr=devicePixelRatio||1, w=c.clientWidth, h=c.clientHeight;
+  if(c.width!==w*dpr){ c.width=w*dpr; c.height=h*dpr; }
+  const g=c.getContext('2d'); g.setTransform(dpr,0,0,dpr,0,0); g.clearRect(0,0,w,h);
+  const t=H.t; if(t.length<2) return;
+  const t1=t[t.length-1], t0=t1-10;
+  let lo=ymin, hi=ymax;
+  for(const s of series) for(let i=0;i<s.d.length;i++){ if(t[i]<t0) continue; lo=Math.min(lo,s.d[i]); hi=Math.max(hi,s.d[i]); }
+  const pad=(hi-lo)*0.08||1; lo-=pad; hi+=pad;
+  const X=x=>40+(x-t0)/10*(w-46), Y=y=>h-14-(y-lo)/(hi-lo)*(h-22);
+  g.strokeStyle='#23282e'; g.fillStyle='#6c7480'; g.font='11px system-ui'; g.lineWidth=1;
+  const paso=niceStep((hi-lo)/4);
+  for(let y=Math.ceil(lo/paso)*paso; y<=hi; y+=paso){ g.beginPath(); g.moveTo(40,Y(y)); g.lineTo(w,Y(y)); g.stroke(); g.fillText(+y.toFixed(2),4,Y(y)+4); }
+  for(const s of series){
+    g.strokeStyle=s.c; g.lineWidth=s.w||1.8; g.setLineDash(s.dash||[]); g.beginPath(); let m=false;
+    for(let i=0;i<t.length;i++){ if(t[i]<t0) continue; const x=X(t[i]), y=Y(s.d[i]); if(!m){g.moveTo(x,y); m=true;} else g.lineTo(x,y); }
+    g.stroke(); g.setLineDash([]);
+  }
+}
+function niceStep(x){ const p=Math.pow(10,Math.floor(Math.log10(x||1))); const n=x/p; return (n<1.5?1:n<3.5?2:n<7.5?5:10)*p; }
+function dibujar(){
+  plot('cRoll',[{d:H.gyro,c:'#8a5cd6',w:1},{d:H.rsp,c:'#e5a23a',dash:[5,4]},{d:H.roll,c:'#3b8ef0'}],-10,10);
+  plot('cAlt',[{d:H.ztof,c:'#6c7480',w:1},{d:H.zsp,c:'#e5a23a',dash:[5,4]},{d:H.z,c:'#3b8ef0'}],0,10);
+  plot('cMot',[{d:H.u1,c:'#2fb36d'},{d:H.u2,c:'#e5534b'}],0,20);
+  requestAnimationFrame(dibujar);
+}
+requestAnimationFrame(dibujar);
+
+// ---------- UI ----------
+function pill(id,t,cls){ const e=$(id); e.textContent=t; e.className='pill '+(cls||''); }
+function log(t,color){ const L=$('log'); const d=document.createElement('div'); d.textContent=t; if(color) d.style.color=color; L.appendChild(d); while(L.childNodes.length>400) L.removeChild(L.firstChild); L.scrollTop=L.scrollHeight; }
+function segSel(seg,val){ if(!seg) return; seg.querySelectorAll('button').forEach(b=>b.classList.toggle('sel', (b.dataset.f||b.dataset.m)===val)); }
+function modoUI(){
+  const m=MODOS[est.modo]; segSel($('segModo'),m);
+  $('rowMot').style.display = m==='manual'?'':'none';
+  $('rowR').style.display = m==='manual'?'none':'';
+  $('rowZ').style.display = m==='auto'?'':'none';
+  $('rowGas').style.display = m==='auto'?'none':'';
+  $('modoHint').textContent = {manual:'Motores directos, sin control.', roll:'Controla el roll; tú pones el gas base. Ideal con el carrito fijo.', auto:'Controla altura y roll. Pide la altura con el slider.'}[m];
+}
+modoUI();
+
+// envío con "aceleración": máximo cada 80 ms por control
+const pend={}; function enviarLuego(k,t){ pend[k]=t; }
+setInterval(()=>{ for(const k in pend){ enviar(pend[k]); delete pend[k]; } }, 80);
+
+$('btnCon').onclick=conectar;
+$('btnArm').onclick=()=>enviar('armar');
+$('btnDes').onclick=()=>enviar('desarmar');
+$('btnAter').onclick=()=>enviar('aterrizar');
+$('btnParo').onclick=()=>{ enviar('s'); resetSliders(); };
+document.addEventListener('keydown',e=>{ if((e.key===' '||e.key==='Escape') && document.activeElement.tagName!=='INPUT'){ e.preventDefault(); enviar('s'); resetSliders(); }});
+function resetSliders(){ ['gas','m1','m2'].forEach(id=>{ $(id).value=0; $(id+'V').textContent='0'+(id==='gas'?' %':''); }); }
+
+$('segModo').querySelectorAll('button').forEach(b=>b.onclick=()=>{ enviar('modo '+b.dataset.m); });
+$('gas').oninput=e=>{ $('gasV').textContent=e.target.value+' %'; enviarLuego('gas','gas '+e.target.value); };
+document.querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>{ const g=$('gas'); let v=+b.dataset.g; v = Math.abs(v)===1 ? +g.value+v : v; g.value=v; g.oninput({target:g}); });
+['m1','m2'].forEach(id=>$(id).oninput=()=>{ $('m1V').textContent=$('m1').value; $('m2V').textContent=$('m2').value; enviarLuego('mot',`mot ${$('m1').value} ${$('m2').value}`); });
+$('rsp').oninput=e=>{ $('rspV').textContent=e.target.value+'°'; enviarLuego('r','r '+e.target.value); };
+$('r0').onclick=()=>{ $('rsp').value=0; $('rsp').oninput({target:$('rsp')}); };
+$('zsp').oninput=e=>{ $('zspV').textContent=e.target.value+' cm'; enviarLuego('z','z '+e.target.value); };
+document.querySelectorAll('[data-z]').forEach(b=>b.onclick=()=>{ $('zsp').value=b.dataset.z; $('zsp').oninput({target:$('zsp')}); });
+
+// parámetros: id p_xxx -> comando
+const CMD = {masa:'masa',J:'j',L:'l',u0:'u0',v0:'v0',max:'max',gasmin:'gasmin',limang:'limang',corte:'corte',vmin:'vmin',tater:'tater',zvel:'zvel',vdiv:'vdiv'};
+document.querySelectorAll('input[id^="p_"]').forEach(el=>{
+  el.onchange=()=>{
+    const k=el.id.slice(2); const m=k.match(/^(zeta|wn|kifac|kp|ki|kd)_(roll|alt)$/);
+    if(m) enviar(`${m[1]} ${m[2]} ${el.value}`); else enviar(`${CMD[k]} ${el.value}`);
+    setTimeout(()=>enviar('ver'),150);
+  };
+});
+document.querySelectorAll('[data-pid]').forEach(seg=>seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{ enviar(`pid ${seg.dataset.pid} ${b.dataset.f}`); setTimeout(()=>enviar('ver'),150); }));
+document.querySelectorAll('[data-copiar]').forEach(b=>b.onclick=()=>{ enviar('copiar '+b.dataset.copiar); setTimeout(()=>enviar('ver'),150); });
+$('btnU0set').onclick=()=>{ enviar('u0set'); setTimeout(()=>enviar('ver'),150); };
+$('bImuAuto').onclick=()=>{ if(confirm('Con los motores apagados: sigue las instrucciones que salen en la consola (9 s).')) enviar('imuauto'); };
+$('bCero').onclick=()=>enviar('cero');
+$('bZcero').onclick=()=>enviar('zcero');
+$('bImu').onclick=()=>enviar('imu');
+$('bGuardar').onclick=()=>enviar('guardar');
+$('bVer').onclick=()=>enviar('ver');
+$('bSend').onclick=()=>{ const c=$('cmd').value.trim(); if(c){ enviar(c); $('cmd').value=''; } };
+$('cmd').onkeydown=e=>{ if(e.key==='Enter') $('bSend').onclick(); };
+
+// calculadora de J
+function calcJ(){
+  const m0=+$('jm0').value/1000, r=+$('jr').value/100, T=+$('jt').value/10;
+  if(!(m0>0&&r>0&&T>0)){ $('jres').textContent='J = —'; return null; }
+  const J=m0*9.81*r*T*T/(4*Math.PI*Math.PI) - m0*r*r;
+  $('jres').textContent=`T = ${T.toFixed(3)} s → J = ${J.toExponential(3)} kg·m²`;
+  return J;
+}
+['jm0','jr','jt'].forEach(id=>$(id).oninput=calcJ);
+$('jusar').onclick=()=>{ const J=calcJ(); if(J>0){ enviar('j '+J.toExponential(4)); setTimeout(()=>enviar('ver'),150); } };
+
+// grabación CSV
+$('btnRec').onclick=()=>{
+  if(!rec){ rec=[]; $('btnRec').textContent='Detener y descargar'; $('btnRec').classList.add('sel'); $('recInfo').textContent='grabando…'; return; }
+  const txt='t_ms,modo,armado,roll_deg,giro_dps,roll_sp_deg,z_cm,v_cms,z_sp_cm,z_tof_cm,motor1_pct,motor2_pct,vbat_V,flags\n'+rec.join('\n');
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([txt],{type:'text/csv'}));
+  a.download='medio_dron_'+new Date().toISOString().slice(0,19).replace(/[:T]/g,'-')+'.csv'; a.click();
+  $('recInfo').textContent=rec.length+' muestras'; rec=null; $('btnRec').textContent='Grabar CSV'; $('btnRec').classList.remove('sel');
+};
+
+if(!('serial' in navigator)){ $('noSerial').classList.remove('hide'); $('btnCon').disabled=true; }
+</script>
+</body>
+</html>
